@@ -92,38 +92,38 @@ export default {
       menus: [
         {
           name: "Dashboard",
-          link: "/dashboard",
+          link: "/",
           slug: "dashboard",
           icon: "dashboard",
         },
         {
           name: "Portofolio",
-          link: "/dashboard/portfolio",
+          link: "/portfolio",
           slug: "portfolio",
           icon: "portfolio",
         },
 
         {
           name: "Pengumuman",
-          link: "/dashboard/announcement",
+          link: "/announcement",
           slug: "announcement",
           icon: "announce",
         },
         {
           name: "Produk & Harga",
-          link: "/dashboard/product",
+          link: "/product",
           slug: "product",
           icon: "product",
         },
         {
           name: "Reward",
-          link: "/dashboard/reward",
+          link: "/reward",
           slug: "reward",
           icon: "reward",
         },
         {
           name: "Artikel",
-          link: "/dashboard/article",
+          link: "/article",
           slug: "article",
           icon: "article",
         },

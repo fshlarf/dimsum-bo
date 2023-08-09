@@ -4,10 +4,14 @@
       <li class="flex justify-between items-center gap-[271px]">
         <div class="flex items-center gap-[12px] text-sm text-[#66738F]">
           <img src="/icons/portfolio/ham-menu.svg" alt="menu" />
-          <p>{{ title }}</p>
+          <p>{{ reward.name }}</p>
         </div>
         <div @click="isOpen = !isOpen" id="kebab-menu">
-          <KebabMenu :is-show="isOpen" @edit="$emit('clickEdit')" />
+          <KebabMenu
+            :is-show="isOpen"
+            @onSelect="onSelect"
+            :options="rewardOptions"
+          />
         </div>
       </li>
     </ul>
@@ -24,6 +28,14 @@ export default {
     title: {
       typeof: String,
       default: "",
+    },
+    reward: {
+      typeof: Object,
+      default: () => {},
+    },
+    rewardOptions: {
+      typeof: Array,
+      default: () => [],
     },
   },
   data() {
@@ -42,6 +54,10 @@ export default {
           this.isOpen = false;
         }
       });
+    },
+    onSelect(option) {
+      this.isOpen = false;
+      this.$emit("onSelect", option, this.reward);
     },
   },
 };
