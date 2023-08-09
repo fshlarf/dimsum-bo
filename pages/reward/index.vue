@@ -1,6 +1,9 @@
 <template>
   <div class="pt-[54px]">
-    <div class="mx-auto w-max p-[32px] rounded-[12px]" id="card-option">
+    <div
+      class="mx-auto w-max p-[32px] rounded-[12px] card-option"
+      id="reward-option"
+    >
       <div>
         <section class="flex justify-between items-center">
           <h3 class="text-base lg:text-[20px] text-[#2D2D2D] font-semibold">
@@ -32,7 +35,7 @@
 
 <script>
 import Button from "~/components/atoms/button.vue";
-import ListMenu from "~/components/card-menu/list-menu.vue";
+import ListMenu from "~/components/reward/list-menu.vue";
 import Input from "~/components/atoms/input.vue";
 import InputFile from "~/components/atoms/input-file.vue";
 
@@ -46,9 +49,6 @@ export default {
   },
   data() {
     return {
-      isOpen: false,
-      editReward: false,
-      addReward: false,
       rewards: [],
       isLoading: true,
       isLoadingDeleteReward: false,
@@ -122,12 +122,7 @@ export default {
 </script>
 
 <style scoped>
-#card-option {
-  border: 1px solid #eceef6;
-  background: #fff;
-  box-shadow: 0px 4px 10px 0px rgba(125, 151, 244, 0.15);
-}
-.edit-reward {
+.card-option {
   border: 1px solid #eceef6;
   background: #fff;
   box-shadow: 0px 4px 10px 0px rgba(125, 151, 244, 0.15);

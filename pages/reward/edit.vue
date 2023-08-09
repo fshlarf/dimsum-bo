@@ -34,7 +34,6 @@
 
 <script>
 import Button from "~/components/atoms/button.vue";
-import ListMenu from "~/components/card-menu/list-menu.vue";
 import Input from "~/components/atoms/input.vue";
 import InputFile from "~/components/atoms/input-file.vue";
 
@@ -42,7 +41,6 @@ export default {
   layout: "dashboard",
   components: {
     Button,
-    ListMenu,
     Input,
     InputFile,
   },
@@ -72,11 +70,8 @@ export default {
         const getReward = await this.$axios.get(`/rewards/${this.rewardId}`);
         if (getReward.data) {
           this.reward = getReward.data.data;
-          console.log(this.reward);
           this.name = this.reward.name;
           this.description = this.reward.description;
-          console.log(this.name);
-          console.log(this.description);
         }
       } catch (error) {
         this.$snackbar.show({

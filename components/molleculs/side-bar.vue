@@ -30,6 +30,7 @@
       </div>
       <section
         class="flex items-center gap-[8px] p-[16px] mt-[35px] cursor-pointer"
+        @click="logout"
       >
         <img src="/icons/side-bar/logout.svg" alt="logout" />
         <h4>Log out</h4>
@@ -77,6 +78,7 @@
       </section>
       <section
         class="flex items-center gap-[8px] pl-[20px] mt-[114px] cursor-pointer"
+        @click="logout"
       >
         <img src="/icons/side-bar/logout.svg" alt="logout" />
         <h4>Log out</h4>
@@ -146,8 +148,22 @@ export default {
   mounted() {
     this.activePage = this.$route.path.split("/").pop();
   },
+  methods: {
+    async logout() {
+      const res = await this.$axios.post("/users/logout");
+      if (res?.status === 200) {
+        localStorage.removeItem("user_info");
+        this.$snackbar.show({
+          message: "Berhasil logout",
+          isSuccess: true,
+        });
+        this.$router.push("/login");
+      }
+    },
+  },
 };
 </script>
+
 <style scoped>
 #wrapper {
   border: 1px solid rgba(232, 232, 232, 0.6);

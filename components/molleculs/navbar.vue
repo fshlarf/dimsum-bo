@@ -24,7 +24,15 @@
           class="md:hidden"
         />
       </div>
-      <h3 class="hidden md:block">Admin</h3>
+      <div class="flex gap-2 items-center">
+        <div
+          v-if="user"
+          class="w-[36px] h-[36px] rounded-full bg-[#F6B205]/10 flex justify-center items-center text-[#B71A1B] text-[20px] uppercase"
+        >
+          {{ generateInitialName(user.name) }}
+        </div>
+        <h3 v-if="user" class="hidden md:block">{{ user.name }}</h3>
+      </div>
     </nav>
     <Sidebar
       :is-show="isOpen"
@@ -33,8 +41,10 @@
     />
   </header>
 </template>
+
 <script>
 import Sidebar from "./side-bar.vue";
+
 export default {
   components: {
     Sidebar,
@@ -42,10 +52,25 @@ export default {
   data() {
     return {
       isOpen: false,
+      user: undefined,
     };
+  },
+  mounted() {
+    const userData = localStorage.getItem("user_info");
+    this.user = JSON.parse(userData);
+  },
+  methods: {
+    generateInitialName(nickname) {
+      const words = nickname.split(" ");
+      const initials = words
+        .slice(0, 2)
+        .map((word) => word.charAt(0).toUpperCase());
+      return initials.join("");
+    },
   },
 };
 </script>
+
 <style scoped>
 #header {
   border: 1px solid rgba(232, 232, 232, 0.6);
