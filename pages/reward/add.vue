@@ -35,10 +35,10 @@
 </template>
 
 <script>
-import Button from "../../components/atoms/button.vue";
-import ListMenu from "../../components/card-menu/list-menu.vue";
+import Button from "~/components/atoms/button.vue";
+import ListMenu from "~/components/card-menu/list-menu.vue";
 import Input from "~/components/atoms/input.vue";
-import InputFile from "../../components/atoms/input-file.vue";
+import InputFile from "~/components/atoms/input-file.vue";
 
 export default {
   layout: "dashboard",
