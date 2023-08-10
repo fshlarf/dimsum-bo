@@ -12,15 +12,16 @@
       />
       <div class="mt-[40px]">
         <Input
+          v-model="name"
           label="Keterangan"
           placeholder="Masukkan keterangan disini"
           class-input="w-full text-base text-[#A0A3BD]"
         />
-        <div class="mt-[20px] h-[152px] relative">
+        <div class="mt-[20px] h-[176px] relative">
           <div class="flex justify-between items-center">
             <p class="text-sm lg:text-base">Gambar</p>
             <label
-              v-if="!showInputFile"
+              v-if="imageFile"
               for="file"
               class="cursor-pointer relative text-sm text-[#00B5D4] flex items-center gap-[4px]"
             >
@@ -29,28 +30,30 @@
             </label>
           </div>
           <InputFile
-            v-show="showInputFile"
+            v-show="!imageFile"
             class-input="bg-[#A0A3BD]/[5%] border-[#A0A3BD]/10 border-[1px]  h-[152px] rounded-[8px] mt-[8px] z-40"
             id="input-file"
             @get-image="getFile"
           />
-          <img
-            v-show="!showInputFile"
-            alt="banner"
-            class="w-full h-full absolute top-[30px] left-0 right-0 bottom-0"
-            id="announcement-banner"
-          />
+          <div
+            v-show="imageFile"
+            class="bg-white w-full h-full rounded-[8px] border p-3 mt-2"
+          >
+            <img alt="banner" class="h-full mx-auto" id="announcement-banner" />
+          </div>
         </div>
       </div>
       <div class="text-right mt-[50px]">
         <Button
-          class="bg-[#F6B205] text-white rounded-[8px] !px-[24px] py-[8px] button-text"
+          @click="onSaveAnnouncement"
+          class="bg-[#F6B205] text-white rounded-[8px] !px-[24px] py-[8px]"
           >Simpan</Button
         >
       </div>
     </div>
   </div>
 </template>
+
 <script>
 import Input from "~/components/atoms/input.vue";
 import InputFile from "~/components/atoms/input-file-custom.vue";
@@ -65,9 +68,16 @@ export default {
   },
   data() {
     return {
-      imageFile: {},
+      imageFile: null,
       showInputFile: true,
+      announcement: {},
+      isLoading: true,
+      name: "",
+      isLoadingSaveAnnouncement: false,
     };
+  },
+  mounted() {
+    this.getAnnouncement();
   },
   methods: {
     getFile(file) {
@@ -79,9 +89,139 @@ export default {
         bannerImage.src = srcImage;
       }
     },
+    async getAnnouncement() {
+      this.isLoading = true;
+      try {
+        const getAnnouncement = await this.$axios.get("/announcements");
+        if (getAnnouncement.data) {
+          this.announcement = getAnnouncement.data.data;
+          this.name = this.announcement.name;
+          if (this.announcement) {
+            await this.getAnnouncementPoster(this.announcement.fileName);
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      this.isLoading = false;
+    },
+    async getAnnouncementPoster(fileName) {
+      if (fileName) {
+        const url = `bucket/images/announcement/${fileName}`;
+        await this.$axios
+          .get(url, {
+            responseType: "blob",
+          })
+          .then((response) => {
+            const responseType = response.headers["content-type"];
+            const responseData = response.data;
+
+            // Convert the response data to a Blob
+            const blob = new Blob([responseData], { type: responseType });
+
+            // Create a new File object with the Blob
+            this.imageFile = new File([blob], fileName, {
+              type: responseType,
+            });
+
+            const srcImage = URL.createObjectURL(this.imageFile);
+            const bannerImage = document.getElementById("announcement-banner");
+            bannerImage.src = srcImage;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    },
+    onSaveAnnouncement() {
+      if (this.announcement && this.announcement.id) {
+        this.updateAnnouncement();
+      } else {
+        this.createAnnouncement();
+      }
+    },
+    async createAnnouncement() {
+      if (!this.name || !this.imageFile) {
+        this.$snackbar.show({
+          message: "Form tidak lengkap",
+          isSuccess: false,
+        });
+        return;
+      }
+      this.isLoadingSaveAnnouncement = true;
+      try {
+        const formData = new FormData();
+        formData.append("name", this.name);
+        formData.append("file", this.imageFile);
+        await this.$axios
+          .post("/announcements", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((response) => {
+            if (response.status == 201) {
+              this.$snackbar.show({
+                message: "Berhasil menyimpan pengumuman",
+                isSuccess: true,
+              });
+              this.getAnnouncement();
+            } else {
+              throw new Error(response);
+            }
+          });
+      } catch (error) {
+        console.log(error);
+        this.$snackbar.show({
+          message: "Gagal menyimpan pengumuman",
+          isSuccess: false,
+        });
+      }
+      this.isLoadingSaveAnnouncement = false;
+    },
+    async updateAnnouncement() {
+      if (!this.name || !this.imageFile) {
+        this.$snackbar.show({
+          message: "Form tidak lengkap",
+          isSuccess: false,
+        });
+        return;
+      }
+      this.isLoadingSaveAnnouncement = true;
+      try {
+        const formData = new FormData();
+        formData.append("name", this.name);
+        formData.append("file", this.imageFile);
+        await this.$axios
+          .patch(`/announcements/${this.announcement.id}`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((response) => {
+            if (response.status == 201) {
+              this.$snackbar.show({
+                message: "Berhasil menyimpan pengumuman",
+                isSuccess: true,
+              });
+              this.getAnnouncement();
+            } else {
+              throw new Error(response);
+            }
+          });
+      } catch (error) {
+        console.log(error);
+        this.$snackbar.show({
+          message: "Gagal menyimpan pengumuman",
+          isSuccess: false,
+        });
+      }
+      this.isLoadingSaveAnnouncement = false;
+    },
   },
 };
 </script>
+
 <style scoped>
 #announcement {
   border-radius: 12px;

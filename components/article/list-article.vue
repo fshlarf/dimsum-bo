@@ -2,20 +2,22 @@
   <div>
     <div class="flex justify-between gap-[48px] items-start">
       <div class="flex gap-[12px]">
-        <img
-          :src="imgArticle"
-          alt="dimsum"
-          class="w-[88px] h-[74px] rounded-[5px]"
-        />
+        <div class="w-[80px] h-[75px] rounded-[5px] overflow-hidden">
+          <img
+            :id="`article-${article.id}`"
+            alt="artikel"
+            class="min-w-full min-h-full object-cover"
+          />
+        </div>
         <div class="w-[610px]">
           <h1 class="text-base text-[#2D2D2D] font-semibold">
-            {{ title }}
+            {{ article.title }}
           </h1>
           <p class="text-sm text-[#474747] truncate">
-            {{ text }}
+            {{ article.content }}
           </p>
           <p class="text-[#A0A3BD] text-xs pt-[16px]">
-            Diposting pada {{ createdAt }}
+            Diposting pada {{ toddmmyyyy(article.createdAt) }}
           </p>
         </div>
       </div>
@@ -24,52 +26,76 @@
           src="/icons/article/eye.svg"
           alt="icon"
           class="cursor-pointer"
-          @click="$emit('clickPreview')"
+          @click="$emit('preview')"
         />
         <img
           src="/icons/article/icon-edit.svg"
           alt="edit"
           class="cursor-pointer"
-          @click="$emit('clickEdit')"
+          @click="$emit('edit')"
         />
         <img
           src="/icons/article/trash.svg"
           alt="delete"
           class="cursor-pointer"
-          @click="$emit('clickDelete')"
+          @click="$emit('delete', article.id)"
         />
       </div>
     </div>
-    <hr v-if="!isTheLastItem" class="my-[20px]" />
   </div>
 </template>
+
 <script>
+import { toddmmyyyy } from "../../helpers/common";
+
 export default {
   props: {
-    imgArticle: {
-      typeof: String,
-      default: "",
+    article: {
+      typeof: Object,
+      default: () => {},
     },
-    title: {
-      typeof: String,
-      default: "",
+  },
+  data() {
+    return {
+      imageFile: null,
+    };
+  },
+  mounted() {
+    this.getArticleImage();
+  },
+  methods: {
+    async getArticleImage() {
+      const fileName = this.article.fileName;
+      if (fileName) {
+        const url = `bucket/images/articles/${fileName}`;
+        await this.$axios
+          .get(url, {
+            responseType: "blob",
+          })
+          .then((response) => {
+            const responseType = response.headers["content-type"];
+            const responseData = response.data;
+
+            // Convert the response data to a Blob
+            const blob = new Blob([responseData], { type: responseType });
+
+            // Create a new File object with the Blob
+            this.imageFile = new File([blob], fileName, {
+              type: responseType,
+            });
+
+            const srcImage = URL.createObjectURL(this.imageFile);
+            const bannerImage = document.getElementById(
+              `article-${this.article.id}`
+            );
+            bannerImage.src = srcImage;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
     },
-    text: {
-      typeof: String,
-      default: "",
-    },
-    createdAt: {
-      typeof: String,
-      default: "",
-    },
-    createdAt: {
-      typeof: String,
-      default: "",
-    },
-    isTheLastItem: {
-      typeof: Boolean,
-      default: false,
-    },
+    toddmmyyyy,
   },
 };
 </script>
