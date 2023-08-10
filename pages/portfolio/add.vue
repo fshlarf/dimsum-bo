@@ -1,22 +1,24 @@
 <template>
-  <div class="pt-[54px]">
-    <div class="mx-auto w-max p-[32px] rounded-[12px] edit-portfolio relative">
-      <header class="text-[#2D2D2D] text-[20px] font-semibold">
+  <div class="pt-[54px] wrapper lg:px-[150px] xl:px-[200px]">
+    <div
+      class="mx-auto p-[20px] lg:p-[32px] rounded-[12px] edit-portfolio relative"
+    >
+      <header class="text-[#2D2D2D] title-text font-semibold">
         Tambah Portofolio
       </header>
       <hr
         class="border-[1px] border-[#D9D9D9]/20 absolute left-0 right-0 mt-[16px] mb-[24px]"
       />
-      <div class="w-[710px] mt-[40px]">
+      <div class="mt-[40px]">
         <div class="flex justify-between items-center">
-          <p>Icon</p>
+          <p class="text-sm md:text-base">Icon</p>
           <label
             v-if="imageFile"
             for="file"
-            class="cursor-pointer relative text-sm text-[#00B5D4] flex items-center gap-[4px] mb-[8px]"
+            class="cursor-pointer relative text-xs md:text-sm text-[#00B5D4] flex items-center gap-[4px] mb-[8px]"
           >
             <img src="/icons/upload.svg" alt="upload" />
-            <p>Ubah Icon</p>
+            <p class="text-sm md:text-base">Ubah Icon</p>
           </label>
         </div>
         <div class="relative mt-2">
@@ -26,27 +28,27 @@
           <InputIcon
             @get-image="getFile"
             v-show="!imageFile"
-            class-input="bg-[#A0A3BD]/[5%] border-[1px] border-[#A0A3BD]/10"
+            class-input="bg-[#A0A3BD]/[5%] border-[1px] border-[#A0A3BD]/10 text-sm"
           />
         </div>
         <Input
           v-model="value"
           label="Heading 1"
-          addClass="mt-[20px]"
-          classInput="w-full"
+          addClass="mt-[20px] !text-sm"
+          classInput="w-full !text-sm"
           placeholder="Masukan heading 1 disini"
         />
         <Input
           v-model="name"
           label="Heading 2"
-          addClass="mt-[20px]"
-          classInput="w-full"
+          addClass="mt-[20px] !text-sm"
+          classInput="w-full !text-sm"
           placeholder="Masukan heading 2 disini"
         />
       </div>
       <div class="mt-[24px] text-right">
         <Button
-          btnClass="text-white bg-[#F6B205] text-sm font-semibold !px-[24px] py-[8px] rounded-[8px]"
+          btnClass="text-white bg-[#F6B205] text-xs md:text-sm font-semibold !px-[24px] py-[8px] rounded-[8px]"
           @click="OnClickSavePortfolio"
           >Simpan</Button
         >

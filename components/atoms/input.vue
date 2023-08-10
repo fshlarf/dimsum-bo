@@ -1,6 +1,8 @@
 <template>
   <div :class="`${addClass}`">
-    <label v-if="label" class="text-base text-[#2D2D2D]">{{ label }} </label>
+    <label v-if="label" class="text-sm lg:text-base text-[#2D2D2D]"
+      >{{ label }}
+    </label>
     <input
       :placeholder="placeholder"
       :value="value"

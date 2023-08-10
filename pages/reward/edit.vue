@@ -1,29 +1,31 @@
 <template>
-  <div class="pt-[54px]">
-    <div class="mx-auto w-max p-[32px] rounded-[12px] edit-reward relative">
-      <header class="text-[#2D2D2D] text-[20px] font-semibold">
+  <div class="pt-[54px] wrapper">
+    <div
+      class="mx-auto lg:max-w-[500px] xl:max-w-[800px] p-[20px] lg:p-[32px] rounded-[12px] edit-reward relative"
+    >
+      <header class="text-[#2D2D2D] title-text font-semibold">
         Edit Reward
       </header>
       <hr
         class="border-[1px] border-[#D9D9D9]/20 absolute left-0 right-0 mt-[16px] mb-[24px]"
       />
-      <div class="w-[710px] mt-[40px]">
+      <div class="mt-[40px]">
         <Input
           v-model="name"
           label="Jenis Reward"
           addClass="mt-[30px]"
-          classInput="w-full"
+          classInput="w-full text-xs md:text-sm"
         />
         <Input
           v-model="description"
           label="Ketentuan Reward"
           addClass="mt-[20px]"
-          classInput="w-full"
+          classInput="w-full text-xs md:text-sm"
         />
       </div>
       <div class="mt-[24px] text-right">
         <Button
-          btnClass="text-white bg-[#F6B205] text-sm font-semibold !px-[24px] py-[8px] rounded-[8px]"
+          btnClass="text-white bg-[#F6B205] button-textfont-semibold !px-[24px] py-[8px] rounded-[8px]"
           @click="onSaveReward"
           >Simpan</Button
         >

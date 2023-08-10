@@ -1,13 +1,15 @@
 <template>
-  <div class="pt-[54px]">
-    <div class="mx-auto w-max p-[32px] rounded-[12px] edit-portfolio relative">
-      <header class="text-[#2D2D2D] text-[20px] font-semibold">
+  <div class="pt-[54px] wrapper lg:px-[100px] xl:px-[200px]">
+    <div
+      class="mx-auto p-[20px] lg:p-[32px] rounded-[12px] edit-portfolio relative"
+    >
+      <header class="text-[#2D2D2D] title-text font-semibold">
         Edit Portfolio
       </header>
       <hr
         class="border-[1px] border-[#D9D9D9]/20 absolute left-0 right-0 mt-[16px] mb-[24px]"
       />
-      <div class="w-[710px] mt-[40px]">
+      <div class="mt-[40px]">
         <div class="flex justify-between items-center">
           <p>Icon</p>
           <label

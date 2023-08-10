@@ -1,7 +1,7 @@
 <template>
-  <div class="pt-[54px]">
+  <div class="pt-[54px] wrapper max-w-[500px]">
     <div
-      class="mx-auto w-max p-[32px] rounded-[12px] card-option"
+      class="mx-auto p-[20px] lg:p-[32px] rounded-[12px] card-option"
       id="reward-option"
     >
       <div>

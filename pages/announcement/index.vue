@@ -1,13 +1,16 @@
 <template>
-  <div class="pt-[54px] w-max mx-auto relative">
-    <div id="announcement" class="p-[32px]">
+  <div class="pt-[54px] wrapper relative">
+    <div
+      id="announcement"
+      class="lg:max-w-[500px] xl:max-w-[800px] p-[20px] lg:p-[32px] mx-auto"
+    >
       <header>
-        <h1 class="text-[20px] text-[#2D2D2D] font-medium">Pengumuman</h1>
+        <h1 class="title-text text-[#2D2D2D] font-medium">Pengumuman</h1>
       </header>
       <hr
         class="absolute left-0 right-0 border-[1px] border-[#D9D9D9]/20 mt-[16px]"
       />
-      <div class="mt-[40px] w-[742px]">
+      <div class="mt-[40px]">
         <Input
           label="Keterangan"
           placeholder="Masukkan keterangan disini"
@@ -15,14 +18,14 @@
         />
         <div class="mt-[20px] h-[152px] relative">
           <div class="flex justify-between items-center">
-            <p>Gambar</p>
+            <p class="text-sm lg:text-base">Gambar</p>
             <label
               v-if="!showInputFile"
               for="file"
               class="cursor-pointer relative text-sm text-[#00B5D4] flex items-center gap-[4px]"
             >
               <img src="/icons/upload.svg" alt="upload" />
-              <p>Ubah Gambar</p>
+              <p class="text-sm lg:text-base">Ubah Gambar</p>
             </label>
           </div>
           <InputFile
@@ -41,7 +44,7 @@
       </div>
       <div class="text-right mt-[50px]">
         <Button
-          class="bg-[#F6B205] text-white rounded-[8px] !px-[24px] py-[8px]"
+          class="bg-[#F6B205] text-white rounded-[8px] !px-[24px] py-[8px] button-text"
           >Simpan</Button
         >
       </div>

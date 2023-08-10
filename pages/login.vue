@@ -1,12 +1,14 @@
 <template>
   <div class="bg-[#FFF9EB] h-screen w-full relative pt-[80px]">
     <div
-      class="relative z-20 bg-white rounded-[15px] p-[20px] w-[540px] mx-auto"
+      class="relative z-20 bg-white rounded-[15px] p-[20px] w-[90%] md:w-[540px] mx-auto"
     >
       <img class="w-[45px]" src="/icons/logo.svg" alt="brand" />
-      <h1 class="mt-[24px] text-[28px] font-bold">Selamat Datang</h1>
+      <h1 class="mt-[18px] md:mt-[24px] text-[20px] md:text-[28px] font-bold">
+        Selamat Datang
+      </h1>
       <p>Silakan login ke akun Anda.</p>
-      <div class="pt-[32px] text-sm md:text-base">
+      <div class="pt-[20px] md:pt-[32px] text-sm md:text-base">
         <label class="block text-[#2D2D2D] mb-[8px]">Email</label>
         <input
           v-model="email"
@@ -51,7 +53,7 @@
       </div>
       <button
         type="submit"
-        class="bg-[#F6B205] text-white p-3 rounded-lg hover:opacity-80 mx-auto block w-full mt-[44px] text-[18px] font-semibold"
+        class="bg-[#F6B205] text-white p-3 rounded-lg hover:opacity-80 mx-auto block w-full mt-[24px] md:mt-[44px] text-base md:text-[18px] font-semibold"
         @click="submitForm"
       >
         Login
@@ -107,7 +109,7 @@ export default {
             email,
             password,
           });
-
+          console.log("respon = ", response);
           if (response?.status === 200) {
             if (this.rememberMe) {
               const login = {

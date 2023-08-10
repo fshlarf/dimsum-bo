@@ -7,11 +7,11 @@
       <hr
         class="absolute left-0 right-0 border-[1px] border-[#D9D9D9]/20 mt-[16px]"
       />
-      <div class="mt-[40px] w-[742px]">
+      <div class="mt-[40px]">
         <Input
           label="Keterangan"
           placeholder="Masukkan keterangan disini"
-          class-input="w-full text-base text-[#A0A3BD]"
+          class-input="w-full text-base text-[#A0A3BD] text-xs md:text-sm"
         />
         <div class="mt-[20px] h-[152px] relative">
           <div class="flex justify-between items-center">
@@ -27,7 +27,7 @@
           </div>
           <InputFile
             v-show="showInputFile"
-            class-input="bg-[#A0A3BD]/[5%] border-[#A0A3BD]/10 border-[1px]  h-[152px] rounded-[8px] mt-[8px] z-40"
+            class-input="bg-[#A0A3BD]/[5%] border-[#A0A3BD]/10 border-[1px]  h-[152px] rounded-[8px] mt-[8px] z-40 text-xs md:text-sm"
             id="input-file"
             @get-image="getFile"
           />
@@ -41,7 +41,7 @@
       </div>
       <div class="text-right mt-[50px]">
         <Button
-          class="bg-[#F6B205] text-white rounded-[8px] !px-[24px] py-[8px]"
+          class="bg-[#F6B205] text-white rounded-[8px] !px-[24px] py-[8px] button-text"
           >Simpan</Button
         >
       </div>

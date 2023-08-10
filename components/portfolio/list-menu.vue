@@ -1,7 +1,9 @@
 <template>
   <div class="p-[24px]">
     <ul class="">
-      <li class="flex justify-between items-center gap-[271px]">
+      <li
+        class="flex justify-between items-center gap-[130px] md:gap-[230px] lg:gap-[271px]"
+      >
         <div class="flex items-center gap-[12px] text-sm text-[#66738F]">
           <img src="/icons/portfolio/ham-menu.svg" alt="menu" />
           <p>{{ portfolio.name }}</p>

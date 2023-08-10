@@ -24,7 +24,7 @@
           class="md:hidden"
         />
       </div>
-      <div class="flex gap-2 items-center">
+      <div class="md:flex gap-2 items-center hidden">
         <div
           v-if="user"
           class="w-[36px] h-[36px] rounded-full bg-[#F6B205]/10 flex justify-center items-center text-[#B71A1B] text-[20px] uppercase"

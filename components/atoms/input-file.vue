@@ -1,6 +1,8 @@
 <template>
   <div :class="`${addClass} relative`">
-    <label v-if="label" for="file">{{ label }}</label>
+    <label v-if="label" for="file" class="text-sm lg:text-base">{{
+      label
+    }}</label>
     <div class="relative h-full pt-[8px]">
       <div
         :class="`input-file ${classInput} h-full w-full absolute rounded-[8px] cursor-pointer flex justify-between items-center px-[16px]`"

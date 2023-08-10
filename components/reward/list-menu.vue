@@ -1,7 +1,7 @@
 <template>
   <div class="p-[24px]">
     <ul class="">
-      <li class="flex justify-between items-center gap-[271px]">
+      <li class="flex justify-between items-center">
         <div class="flex items-center gap-[12px] text-sm text-[#66738F]">
           <img src="/icons/portfolio/ham-menu.svg" alt="menu" />
           <p>{{ reward.name }}</p>
