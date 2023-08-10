@@ -4,7 +4,7 @@
     <div :class="`relative h-full pt-[8px] w-full`">
       <label
         for="file"
-        :class="`w-full  absolute left-0 right-0 top-0 bottom-0 flex justify-center items-center ${classInput} cursor-pointer `"
+        :class="`w-full absolute left-0 right-0 top-0 bottom-0 flex justify-center items-center ${classInput} cursor-pointer`"
       >
         <img src="/icons/upload-file.svg" alt="upload" />
         <h3 class="text-base text-[#2D2D2D]">Upload Gambar</h3>

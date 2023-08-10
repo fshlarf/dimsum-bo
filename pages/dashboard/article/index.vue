@@ -47,8 +47,8 @@
         />
         <ListArticle
           img-article="/images/product/dimsum-ayam.png"
-          title=" Apa Manfaat Dimsum Untuk Tubuh ?"
-          text=" Mungkin sudah banyak yang tahu Dimsum merupakan salah satu kudapan khas
+          title="Apa Manfaat Dimsum Untuk Tubuh ?"
+          text="Mungkin sudah banyak yang tahu Dimsum merupakan salah satu kudapan khas
         Tiongkok, Cina awd"
           createdAt="13/07/2023"
         />
@@ -67,6 +67,13 @@
           createdAt="13/07/2023"
           is-the-last-item="true"
         />
+
+        <Pagination
+          :is-loading="isLoading"
+          :pagination="articles.pagination"
+          :max-displayed-pages="5"
+          @onClickPagination="onClickPagination"
+        />
       </div>
       <div v-else class="w-[900px] h-[292px] flex justify-center items-center">
         <div>
@@ -77,24 +84,72 @@
     </div>
   </div>
 </template>
+
 <script>
 import Button from "~/components/atoms/button.vue";
 import ListArticle from "~/components/article/list-article.vue";
+import Pagination from "~/components/molleculs/pagination.vue";
+
 export default {
   layout: "dashboard",
   components: {
     Button,
     ListArticle,
+    Pagination,
   },
-
   data() {
     return {
       addArticle: false,
       dataArticle: true,
+      articles: {
+        list: [],
+        pagination: {},
+      },
+      filterGetArticles: {
+        page: 1,
+        limit: 10,
+      },
+      isLoading: true,
     };
+  },
+  mounted() {
+    this.getArticles();
+  },
+  methods: {
+    async getArticles() {
+      this.isLoading = true;
+      try {
+        const getArticles = await this.$axios.get("/articles", {
+          params: this.filterGetArticles,
+        });
+        if (getArticles.data) {
+          const { data, pagination } = getArticles.data;
+          this.articles = {
+            ...this.articles,
+            list: data,
+            pagination,
+          };
+        }
+      } catch (error) {
+        console.log(error);
+        this.$snackbar.show({
+          message: "Terjadi kesalahan",
+          isSuccess: false,
+        });
+      }
+      this.isLoading = false;
+    },
+    onClickPagination(page) {
+      this.filterGetArticles = {
+        ...this.filterGetArticles,
+        page: page,
+      };
+      this.getArticles();
+    },
   },
 };
 </script>
+
 <style scoped>
 .article-wrapper {
   border: 1px solid #eceef6;
