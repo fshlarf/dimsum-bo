@@ -1,12 +1,12 @@
 <template>
-  <div :class="`${addClass} relative`">
+  <div :class="`relative cursor-pointer ${addClass}`">
     <label v-if="label" for="file" class="text-sm lg:text-base">{{
       label
     }}</label>
-    <div :class="`relative h-full pt-[8px] w-full`">
+    <div class="`relative h-full pt-[8px] w-full`">
       <label
         for="file"
-        :class="`w-full absolute left-0 right-0 top-0 bottom-0 flex justify-center items-center ${classInput} cursor-pointer`"
+        :class="`w-full absolute left-0 right-0 top-0 bottom-0 flex justify-center items-center ${classInput}`"
       >
         <img src="/icons/upload-file.svg" alt="upload" />
         <h3 class="text-sm lg:text-base text-[#2D2D2D]">Upload Gambar</h3>
