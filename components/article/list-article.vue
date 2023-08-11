@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="flex justify-between gap-[48px] items-start">
-      <div class="flex gap-[12px]">
+    <div class="flex justify-between items-start">
+      <div class="flex gap-[12px] lg:max-w-[70%]">
         <div class="w-[80px] h-[75px] rounded-[5px] overflow-hidden">
           <img
             :id="`article-${article.id}`"
@@ -9,11 +9,13 @@
             class="min-w-full min-h-full object-cover"
           />
         </div>
-        <div class="w-[610px]">
-          <h1 class="text-base text-[#2D2D2D] font-semibold">
+        <div class="lg:max-w-[80%]">
+          <h1
+            class="text-xs md:text-sm lg:text-base text-[#2D2D2D] font-semibold truncate"
+          >
             {{ article.title }}
           </h1>
-          <p class="text-sm text-[#474747] truncate">
+          <p class="hidden lg:block lg:text-sm text-[#474747] truncate">
             {{ article.content }}
           </p>
           <p class="text-[#A0A3BD] text-xs pt-[16px]">

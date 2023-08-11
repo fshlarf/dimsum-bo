@@ -37,7 +37,7 @@
                 class="cursor-pointer"
               />
               <h3 class="text-sm font-medium text-[#FF6E79] cursor-pointer">
-                Edit
+                Delete
               </h3>
             </div>
           </td>
