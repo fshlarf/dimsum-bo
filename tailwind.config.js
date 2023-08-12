@@ -19,26 +19,31 @@ module.exports = {
           marginRight: "auto",
           paddingLeft: "1.3rem",
           paddingRight: "1.3rem",
+          paddingTop: "12px",
 
           "@screen sm": {
             maxWidth: "640px",
             paddingLeft: "1.3rem",
             paddingRight: "1.3rem",
+            paddingTop: "12px",
           },
           "@screen md": {
             maxWidth: "768px",
             paddingLeft: "30px",
             paddingRight: "30px",
+            paddingTop: "20px",
           },
           "@screen lg": {
             maxWidth: "1024px",
             paddingLeft: "0",
             paddingRight: "0",
+            paddingTop: "54px",
           },
           "@screen xl": {
             maxWidth: "1440px",
             paddingLeft: "0",
             paddingRight: "0",
+            paddingTop: "54px",
           },
         },
         ".title-text": {

@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-[54px] wrapper lg:px-[100px] xl:px-[200px]">
+  <div class="wrapper lg:px-[100px] xl:px-[200px]">
     <div
       class="mx-auto p-[20px] lg:p-[32px] rounded-[12px] edit-portfolio relative"
     >

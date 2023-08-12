@@ -95,7 +95,7 @@ export default {
         {
           name: "Dashboard",
           link: "/",
-          slug: "dashboard",
+          slug: "",
           icon: "dashboard",
         },
         {

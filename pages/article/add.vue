@@ -1,7 +1,10 @@
 <template>
-  <div class="pt-[54px] wrapper">
+  <div class="wrapper">
+    <nuxt-link to="/product" class="lg:hidden">
+      <img src="/icons/arrow-back.svg" alt="back" />
+    </nuxt-link>
     <div
-      class="add-article rounded-[12px] lg:mx-[130px] xl:mx-[184px] relative"
+      class="add-article rounded-[12px] lg:mx-[130px] xl:mx-[184px] mt-[12px] md:mt-[16px] lg:mt-[32px] relative"
     >
       <div class="p-[20px] lg:p-[32px]">
         <header class="title-text font-semibold">Tambah Artikel</header>

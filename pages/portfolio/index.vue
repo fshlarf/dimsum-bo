@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-[54px] wrapper">
+  <div class="wrapper">
     <div
       class="mx-auto w-max p-[20px] lg:p-[32px] rounded-[12px] card-option"
       id="portfolio-option"

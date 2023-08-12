@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="flex justify-between items-start">
-      <div class="flex gap-[12px] lg:max-w-[70%]">
+    <div class="flex lg:flex-row flex-col justify-between items-start truncate">
+      <div class="flex gap-[12px]">
         <div class="w-[80px] h-[75px] rounded-[5px] overflow-hidden">
           <img
             :id="`article-${article.id}`"
@@ -9,21 +9,43 @@
             class="min-w-full min-h-full object-cover"
           />
         </div>
-        <div class="lg:max-w-[80%]">
+        <div class="w-[60%]">
           <h1
-            class="text-xs md:text-sm lg:text-base text-[#2D2D2D] font-semibold truncate"
+            class="text-xs md:text-sm lg:text-base text-[#2D2D2D] font-semibold truncate w-[70%]"
           >
             {{ article.title }}
           </h1>
-          <p class="hidden lg:block lg:text-sm text-[#474747] truncate">
+          <p class="hidden lg:block lg:text-sm text-[#474747] truncate w-[80%]">
             {{ article.content }}
           </p>
-          <p class="text-[#A0A3BD] text-xs pt-[16px]">
+          <p
+            class="text-[#A0A3BD] text-[10px] lg:text-xs pt-[8px] lg:pt-[16px]"
+          >
             Diposting pada {{ toddmmyyyy(article.createdAt) }}
           </p>
+          <div class="flex items-center gap-[12px] mt-[8px] lg:hidden">
+            <img
+              src="/icons/article/eye.svg"
+              alt="icon"
+              class="cursor-pointer"
+              @click="$emit('preview')"
+            />
+            <img
+              src="/icons/article/icon-edit.svg"
+              alt="edit"
+              class="cursor-pointer"
+              @click="$emit('edit')"
+            />
+            <img
+              src="/icons/article/trash.svg"
+              alt="delete"
+              class="cursor-pointer"
+              @click="$emit('delete', article.id)"
+            />
+          </div>
         </div>
       </div>
-      <div class="flex items-center gap-[12px]">
+      <div class="items-center gap-[12px] hidden lg:flex">
         <img
           src="/icons/article/eye.svg"
           alt="icon"

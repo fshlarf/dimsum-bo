@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-[54px] wrapper">
+  <div class="wrapper">
     <div
       class="mx-auto lg:max-w-[500px] xl:max-w-[800px] p-[20px] lg:p-[32px] rounded-[12px] edit-reward relative"
     >

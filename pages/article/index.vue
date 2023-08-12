@@ -1,11 +1,11 @@
 <template>
-  <div class="pt-[54px] wrapper lg:px-[40px] xl:px-[120px]">
-    <div class="article-wrapper p-[32px] rounded-[12px] relative">
+  <div class="wrapper lg:px-[40px] xl:px-[120px]">
+    <div class="article-wrapper p-[20px] lg:p-[32px] rounded-[12px] relative">
       <header class="flex justify-between lg:items-center relative">
-        <h1 class="title-text text-[#2D2D2D] font-semibold">Artikel</h1>
-        <div
-          class="flex flex-col-reverse lg:flex-row lg:items-center gap-[16px]"
-        >
+        <h1 class="title-text text-[#2D2D2D] font-semibold pt-[12px]">
+          Artikel
+        </h1>
+        <div class="flex lg:flex-row lg:items-center gap-[16px]">
           <div
             class="absolute left-0 right-0 top-[100%] mt-[16px] lg:mt-0 lg:relative lg:w-full"
           >
@@ -35,7 +35,7 @@
         class="left-0 right-0 absolute border-[1px] border-[#D9D9D9]/20 hidden lg:block lg:mt-[16px]"
       />
       <div
-        class="mt-[140px] lg:mt-[45px] space-y-[16px] lg:space-y-0"
+        class="mt-[100px] lg:mt-[45px] space-y-[16px] lg:space-y-0"
         v-if="!isLoading"
       >
         <div v-for="(article, id) in articles.list" :key="id">
@@ -48,7 +48,7 @@
           />
         </div>
 
-        <div class="mt-12 mx-auto max-w-max">
+        <div class="mt-12 block max-w-max mx-auto">
           <Pagination
             :is-loading="isLoading"
             :pagination="articles.pagination"
@@ -57,7 +57,10 @@
           />
         </div>
       </div>
-      <div v-else class="w-[900px] h-[292px] flex justify-center items-center">
+      <div
+        v-else
+        class="lg:h-[292px] flex justify-center items-center mt-[100px] lg:mt-[45px]"
+      >
         <div>
           <img
             class="mx-auto"
