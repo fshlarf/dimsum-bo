@@ -1,12 +1,12 @@
 <template>
   <div class="py-[30px]">
-    <table class="w-full">
+    <table class="w-full text-sm lg:text-base">
       <tbody>
         <tr class="text-left text-[#2D2D2D]">
           <th class="px-[20px] pb-[20px]">No</th>
           <th class="pb-[20px]">Name</th>
-          <th class="pb-[20px]">Phone</th>
-          <th class="pb-[20px]">Email</th>
+          <th class="pb-[20px] hide-column">Phone</th>
+          <th class="pb-[20px] hide-column">Email</th>
           <th class="pb-[20px]">Action</th>
         </tr>
         <tr
@@ -17,10 +17,10 @@
         >
           <td class="py-[15px] px-[20px]">{{ id + 1 }}</td>
           <td>{{ list.name }}</td>
-          <td>{{ list.phone }}</td>
-          <td>{{ list.email }}</td>
+          <td class="hide-column">{{ list.phone }}</td>
+          <td class="hide-column">{{ list.email }}</td>
           <td class="flex gap-[16px] items-center py-[15px]">
-            <div class="flex gap-[4px]">
+            <div class="flex gap-[4px]" @click="onClickEdit(list.id)">
               <img
                 src="/icons/dashboard/edit.svg"
                 alt="edit"
@@ -30,14 +30,14 @@
                 Edit
               </h3>
             </div>
-            <div class="flex gap-[4px]">
+            <div class="flex gap-[4px]" @click="$emit('delete', list.id)">
               <img
                 src="/icons/dashboard/trash.svg"
                 alt="delete"
                 class="cursor-pointer"
               />
               <h3 class="text-sm font-medium text-[#FF6E79] cursor-pointer">
-                Edit
+                Delete
               </h3>
             </div>
           </td>
@@ -54,6 +54,11 @@ export default {
       default: () => [],
     },
   },
+  methods: {
+    onClickEdit(id) {
+      this.$router.push(`/users/edit-user?userId=${id}`);
+    },
+  },
 };
 </script>
 <style>
@@ -61,5 +66,10 @@ th {
   color: #2d2d2d;
   font-size: 14px;
   font-weight: 500;
+}
+@media screen and (max-width: 1000px) {
+  .hide-column {
+    display: none;
+  }
 }
 </style>

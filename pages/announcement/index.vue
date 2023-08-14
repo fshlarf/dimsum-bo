@@ -2,7 +2,7 @@
   <div class="pt-[54px] wrapper relative">
     <div
       id="announcement"
-      class="lg:max-w-[500px] xl:max-w-[800px] p-[20px] lg:p-[32px] mx-auto"
+      class="lg:max-w-[500px] xl:max-w-[736px] p-[20px] lg:p-[32px] mx-auto relative"
     >
       <header>
         <h1 class="title-text text-[#2D2D2D] font-medium">Pengumuman</h1>
@@ -17,7 +17,7 @@
           placeholder="Masukkan keterangan disini"
           class-input="w-full text-base text-[#A0A3BD]"
         />
-        <div class="mt-[20px] h-[176px] relative">
+        <div class="mt-[20px] h-[70px] md:-[100px] lg:h-[176px] relative">
           <div class="flex justify-between items-center">
             <p class="text-sm lg:text-base">Gambar</p>
             <label
@@ -31,13 +31,13 @@
           </div>
           <InputFile
             v-show="!imageFile"
-            class-input="bg-[#A0A3BD]/[5%] border-[#A0A3BD]/10 border-[1px]  h-[152px] rounded-[8px] mt-[8px] z-40"
+            class-input="bg-[#A0A3BD]/[5%] border-[#A0A3BD]/10 border-[1px]  !h-full rounded-[8px] mt-[8px] z-40"
             id="input-file"
             @get-image="getFile"
           />
           <div
             v-show="imageFile"
-            class="bg-white w-full h-full rounded-[8px] border p-3 mt-2"
+            class="bg-white w-full h-full rounded-[8px] border lg:p-3 mt-2"
           >
             <img alt="banner" class="h-full mx-auto" id="announcement-banner" />
           </div>

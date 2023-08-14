@@ -1,19 +1,21 @@
 <template>
-  <div class="pt-[54px]">
+  <div class="wrapper lg:px-[70px] xl:px-[120px]">
     <!-- <div @click="isSwitch = !isSwitch" class="w-max mx-auto">
       <TogleTitle :toggle="isSwitch" />
     </div> -->
-    <div class="">
+    <div class="relative">
       <div
-        class="p-[32px] rounded-[12px] w-max relative mx-auto"
+        class="p-[20px] lg:p-[32px] rounded-[12px] mx-auto"
         id="product-wrapper"
       >
-        <header class="flex justify-between items-center">
-          <h1 class="text-[20px] text-[#2D2D2D] font-semibold">
+        <header class="flex justify-between items-center relative">
+          <h1 class="title-text text-[#2D2D2D] font-semibold whitespace-nowrap">
             Daftar Produk
           </h1>
           <div class="flex items-center gap-[16px]">
-            <div class="relative">
+            <div
+              class="absolute left-0 right-0 top-[100%] w-full lg:relative mt-[16px] lg:mt-0"
+            >
               <img
                 src="/icons/search.svg"
                 alt="search"
@@ -23,23 +25,23 @@
                 v-model="filterProduct.search"
                 type="text"
                 placeholder="Cari produk disini.."
-                class="text-xs border-[1px] border-[#F8FAFB] bg-[#F8FAFB] focus:outline-none rounded-[8px] py-[12px] pl-[40px] w-[244px] focus:border-[#F6B205]/40"
+                class="text-xs border-[1px] border-[#F8FAFB] bg-[#F8FAFB] focus:outline-none rounded-[8px] py-[12px] pl-[40px] w-full lg:w-[244px] focus:border-[#F6B205]/40"
                 @keyup.enter="onSearchProduct"
               />
             </div>
             <Button
               @click="$router.push('product/add')"
-              class="text-sm text-white bg-[#F6B205] p-[12px] rounded-[8px]"
+              class="button-text text-white bg-[#F6B205] p-[12px] rounded-[8px]"
               >Tambah Produk</Button
             >
           </div>
         </header>
         <hr
-          class="left-0 right-0 absolute border-[1px] border-[#D9D9D9]/20 mt-[16px]"
+          class="left-0 right-0 hidden lg:block absolute border-[1px] border-[#D9D9D9]/20 mt-[16px]"
         />
         <div
           v-if="!isLoading"
-          class="mt-[40px] flex justify-between items-center relative"
+          class="mt-[72px] lg:mt-[40px] flex justify-between items-center relative"
         >
           <div
             v-for="(category, id) in categories"
@@ -62,10 +64,10 @@
           </div>
           <hr class="absolute bottom-0 left-0 right-0" />
         </div>
-        <div v-if="!isLoading" class="min-w-[883px] mt-[45px]">
+        <div v-if="!isLoading" class="mt-[45px]">
           <div
             v-if="products.list.length > 0"
-            class="grid grid-cols-5 gap-x-[16px] gap-y-[20px]"
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-[16px] gap-y-[20px]"
           >
             <CardProduct
               v-for="(product, id) in products.list"

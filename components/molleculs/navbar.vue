@@ -8,7 +8,9 @@
     >
       <div class="flex items-center gap-[4px] font-bold text-[#B71A1B] text-sm">
         <img src="/icons/side-bar/gear.svg" alt="gear" />
-        <h3>Management</h3>
+        <nuxt-link to="/">
+          <h3>Management</h3>
+        </nuxt-link>
       </div>
       <div @click="isOpen = !isOpen">
         <img

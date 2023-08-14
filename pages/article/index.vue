@@ -1,10 +1,14 @@
 <template>
-  <div class="pt-[54px] w-max max-w-[100%] mx-auto">
-    <div class="article-wrapper p-[32px] rounded-[12px] w-max relative">
-      <header class="flex justify-between items-center w-[900px]">
-        <h1 class="text-[20px] text-[#2D2D2D] font-semibold">Artikel</h1>
-        <div class="flex items-center gap-[16px]">
-          <div class="relative">
+  <div class="wrapper lg:px-[40px] xl:px-[120px]">
+    <div class="article-wrapper p-[20px] lg:p-[32px] rounded-[12px] relative">
+      <header class="flex justify-between lg:items-center relative">
+        <h1 class="title-text text-[#2D2D2D] font-semibold pt-[12px]">
+          Artikel
+        </h1>
+        <div class="flex lg:flex-row lg:items-center gap-[16px]">
+          <div
+            class="absolute left-0 right-0 top-[100%] mt-[16px] lg:mt-0 lg:relative lg:w-full"
+          >
             <img
               src="/icons/search.svg"
               alt="search"
@@ -16,23 +20,26 @@
               name=""
               id=""
               placeholder="Cari artikel disini.."
-              class="text-xs border-[1px] border-[#F8FAFB] bg-[#F8FAFB] focus:outline-none rounded-[8px] py-[12px] pl-[40px] w-[244px] focus:border-[#F6B205]/40"
+              class="text-xs border-[1px] border-[#F8FAFB] bg-[#F8FAFB] focus:outline-none rounded-[8px] py-[12px] pl-[40px] lg:w-[244px] focus:border-[#F6B205]/40 w-full"
             />
           </div>
           <nuxt-link to="article/add">
             <Button
-              class="text-sm text-white bg-[#F6B205] p-[12px] rounded-[8px]"
+              class="text-sm text-white bg-[#F6B205] p-[12px] rounded-[8px] whitespace-nowrap"
               >Tambah Artikel</Button
             >
           </nuxt-link>
         </div>
       </header>
       <hr
-        class="left-0 right-0 absolute border-[1px] border-[#D9D9D9]/20 mt-[16px]"
+        class="left-0 right-0 absolute border-[1px] border-[#D9D9D9]/20 hidden lg:block lg:mt-[16px]"
       />
-      <div class="mt-[45px]" v-if="!isLoading">
+      <div
+        class="mt-[100px] lg:mt-[45px] space-y-[16px] lg:space-y-0"
+        v-if="!isLoading"
+      >
         <div v-for="(article, id) in articles.list" :key="id">
-          <hr v-if="id > 0" class="my-[20px]" />
+          <hr v-if="id > 0" class="my-[20px] hidden lg:block" />
           <ListArticle
             :article="article"
             @edit="$router.push(`/article/edit?id=${article.id}`)"
@@ -41,7 +48,7 @@
           />
         </div>
 
-        <div class="mt-12 mx-auto max-w-max">
+        <div class="mt-12 block max-w-max mx-auto">
           <Pagination
             :is-loading="isLoading"
             :pagination="articles.pagination"
@@ -50,7 +57,10 @@
           />
         </div>
       </div>
-      <div v-else class="w-[900px] h-[292px] flex justify-center items-center">
+      <div
+        v-else
+        class="lg:h-[292px] flex justify-center items-center mt-[100px] lg:mt-[45px]"
+      >
         <div>
           <img
             class="mx-auto"

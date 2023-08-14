@@ -1,20 +1,25 @@
 <template>
-  <div class="pt-[54px] w-max mx-auto">
-    <div class="add-article rounded-[12px] w-max relative">
-      <div class="p-[32px]">
-        <header class="text-[20px] font-semibold">Tambah Artikel</header>
+  <div class="wrapper">
+    <nuxt-link to="/product" class="lg:hidden">
+      <img src="/icons/arrow-back.svg" alt="back" />
+    </nuxt-link>
+    <div
+      class="add-article rounded-[12px] lg:mx-[130px] xl:mx-[184px] mt-[12px] md:mt-[16px] lg:mt-[32px] relative"
+    >
+      <div class="p-[20px] lg:p-[32px]">
+        <header class="title-text font-semibold">Tambah Artikel</header>
       </div>
       <hr />
-      <div class="w-[700px] p-[32px]">
+      <div class="p-[20px] lg:p-[32px]">
         <div class="">
           <div class="flex justify-between items-center">
-            <p>Gambar</p>
+            <p class="text-sm lg:text-base">Gambar</p>
           </div>
           <div v-show="imageFile" class="flex items-center gap-4">
-            <div class="">
+            <div class="mt-[10px] lg:mt-[15px]">
               <img
                 alt=""
-                class="max-w-[122px] max-h-[100px]"
+                class="max-w-[80px] max-h-[66px] md:max-w-[90px] md:max-h-[80px] lg:max-w-[122px] lg:max-h-[100px]"
                 id="image-add-article"
               />
             </div>
@@ -24,7 +29,7 @@
               class="cursor-pointer relative text-sm text-[#00B5D4] flex items-center gap-[4px]"
             >
               <img src="/icons/upload.svg" alt="upload" />
-              <p>Ubah Gambar</p>
+              <p class="text-sm lg:text-base">Ubah Gambar</p>
             </label>
           </div>
           <div>
@@ -38,19 +43,19 @@
         <Input
           v-model="title"
           label="Judul Artikel"
-          class="mt-[20px]"
+          class="mt-[20px] text-sm lg:text-base"
           placeholder="Masukkan judul artikel disini"
           class-input="w-full"
         />
         <TextArea
           v-model="content"
-          class-text="h-[268px]"
+          class-text="h-[164px] lg:h-[268px] text-sm lg:text-base"
           label="Konten"
           class="mt-[20px]"
         />
         <div class="text-right mt-[60px]">
           <Button
-            class="text-white bg-[#F6B205] px-[20px] py-[8px] text-sm font-semibold rounded-[8px]"
+            class="text-white bg-[#F6B205] px-[20px] py-[8px] button-text font-semibold rounded-[8px]"
             @click="createArticle"
             >Simpan</Button
           >

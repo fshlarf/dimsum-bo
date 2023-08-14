@@ -1,23 +1,25 @@
 <template>
   <div
-    class="flex !items-center !justify-between !gap-5 rounded-[8px] transition-all ease-in-out duration-300 overflow-hidden bg-white shadow-md"
+    class="flex !items-center !justify-between !gap-5 right-[20px] md:right-[30px] lg:right-[85px] rounded-[8px] transition-all ease-in-out duration-300 overflow-hidden bg-white shadow-md"
     :class="`snackbar ${
-      show ? 'h-auto opacity-100 top-[80px]' : 'h-0 opacity-0 top-0'
+      show
+        ? 'h-auto opacity-100 top-[80px] md:top-[60px] lg:top-[80px]'
+        : 'h-0 opacity-0 top-0'
     }`"
   >
     <div class="flex items-center max-w-max">
       <div
-        class="w-[48px] py-[15px] px-[12px]"
+        class="w-[48px] py-[12px] lg:py-[15px] px-[12px]"
         :class="`${isSuccess ? 'bg-[#DDF7E0]' : 'bg-[#FFE7EA]'}`"
       >
         <img
-          class="w-[24px]"
+          class="w-[22px] lg:w-[24px]"
           :src="`/icons/${isSuccess ? 'badge-success' : 'badge-error'}.svg`"
           alt="snackbar status"
         />
       </div>
       <div
-        class="min-w-[372px] px-[14px] flex justify-between items-center space-x-[14px]"
+        class="min-w-[300px] px-[14px] flex justify-between items-center space-x-[14px] lg:text-sm text-xs"
       >
         <p :class="`${subMessage ? 'font-bold' : ''}`">
           {{ message }}
@@ -80,8 +82,7 @@ export default {
 .snackbar {
   position: fixed;
   z-index: 900;
-  min-width: 417px;
-  right: 85px;
+  max-width: 417px;
 }
 .snackbar__show {
   display: flex;

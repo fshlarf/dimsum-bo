@@ -1,18 +1,23 @@
 <template>
-  <div class="pt-[54px] w-max mx-auto">
-    <div class="add-product p-[32px] rounded-[12px] w-max relative">
-      <header class="text-[20px] font-semibold">Tambah Produk</header>
+  <div class="wrapper lg:px-[84px] xl:px-[184px]">
+    <nuxt-link to="/product">
+      <img src="/icons/arrow-back.svg" alt="back" />
+    </nuxt-link>
+    <div
+      class="add-product p-[20px] lg:p-[32px] rounded-[12px] relative mt-[12px] md:mt-[16px] lg:mt-[32px]"
+    >
+      <header class="title-text font-semibold">Tambah Produk</header>
       <hr class="absolute left-0 right-0 my-[24px]" />
-      <div class="mt-[48px] w-[700px]">
+      <div class="mt-[48px]">
         <!-- upload image -->
         <div class="relative">
           <div class="">
-            <p>Gambar</p>
+            <p class="text-sm lg:text-base">Gambar</p>
           </div>
           <div v-show="imageFile" class="flex gap-4 items-center">
             <img
               alt="foto produk"
-              class="max-w-[122px] max-h-[100px]"
+              class="max-w-[122px] max-h-[46px] md:max-h-[70px] lg:max-h-[100px]"
               id="image-add-product"
             />
             <label
@@ -21,13 +26,13 @@
               class="cursor-pointer relative text-sm text-[#00B5D4] flex items-center gap-[4px]"
             >
               <img src="/icons/upload.svg" alt="upload" />
-              <p>Ubah Gambar</p>
+              <p class="text-sm lg:text-base">Ubah Gambar</p>
             </label>
           </div>
           <div class="mt-2">
             <InputFileCustom
               v-show="!imageFile"
-              add-class="border-[1px] border-[#A0A3BD]/10 bg-[#A0A3BD]/[5%] h-[100px]"
+              add-class="border-[1px] border-[#A0A3BD]/10 bg-[#A0A3BD]/[5%] h-[46px] lg:h-[100px] text-sm lg:text-base rounded-[8px]"
               @get-image="getFile"
             />
           </div>
@@ -37,7 +42,7 @@
         <SelectDropdown
           v-if="!isLoading"
           :init-value="categoryName"
-          class="mt-[20px]"
+          class="mt-[20px] text-sm lg:text-base"
           label="Kategori Produk"
           :options="categories"
           @select="onSelectCategory"
@@ -45,7 +50,7 @@
         <Input
           v-model="name"
           label="Produk"
-          class="mt-[20px]"
+          class="mt-[20px] text-sm lg:text-base"
           placeholder="Masukkan nama produk disini"
           class-input="w-full"
         />
@@ -53,20 +58,20 @@
           <Input
             v-model="quantity"
             placeholder="Masukkan isi"
-            class-input="w-full"
+            class-input="w-full text-sm lg:text-base"
             add-class="w-full"
             label="isi"
           />
           <SelectDropdown
             :init-value="unit"
             :options="unitOptions"
-            add-class="!mt-0 w-full"
+            add-class="!mt-0 w-full text-sm lg:text-base"
             @select="onSelectUnit"
           />
         </div>
         <SelectDropdown
           :init-value="packaging"
-          class="mt-[20px]"
+          class="mt-[20px] text-sm lg:text-base"
           label="Kemasan"
           :options="packagingOptions"
           @select="onSelectPackaging"
@@ -78,7 +83,7 @@
               ? 'Harga Reseller'
               : 'Harga Reseller/Agent'
           }`"
-          class="mt-[20px]"
+          class="mt-[20px] text-sm lg:text-base"
           placeholder="cth. 35000"
           class-input="w-full"
         />
@@ -86,13 +91,13 @@
           v-if="categoryName == 'Aneka Dimsum'"
           v-model.number="agentPrice"
           label="Harga Agent"
-          class="mt-[20px]"
+          class="mt-[8px] md:mt-[12px] lg:mt-[20px] text-sm lg:text-base"
           placeholder="cth. 35000"
           class-input="w-full"
         />
-        <div class="text-right mt-[60px]">
+        <div class="text-right mt-[16px] md:mt-[24px] lg:mt-[60px]">
           <Button
-            class="text-white bg-[#F6B205] px-[20px] py-[8px] text-sm font-semibold rounded-[8px]"
+            class="text-white bg-[#F6B205] px-[20px] py-[8px] button-text font-semibold rounded-[8px]"
             @click="addProduct"
             >Simpan</Button
           >

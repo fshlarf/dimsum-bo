@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-[54px] wrapper max-w-[500px]">
+  <div class="wrapper max-w-[500px]">
     <div
       class="mx-auto p-[20px] lg:p-[32px] rounded-[12px] card-option"
       id="reward-option"

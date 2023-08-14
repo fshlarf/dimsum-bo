@@ -1,15 +1,15 @@
 <template>
   <div>
-    <section class="w-[164px]">
-      <div class="w-[164px] h-[124px] rounded-[10px] overflow-hidden">
+    <section class="max-w-[164px]">
+      <div class="rounded-[10px] overflow-hidden">
         <img
           alt="dimsum"
-          class="w-full h-full object-cover object-center"
+          class="w-[138px] h-[105px] lg:w-[164px] lg:h-[124px] object-cover object-center"
           :id="`product-image-${product.id}`"
         />
       </div>
-      <div class="flex justify-between items-center mt-[8px]">
-        <p class="text-xs text-[#2D2D2D]">{{ product.name }}</p>
+      <div class="flex justify-between items-center mt-[8px] px-2">
+        <p class="text-[10px] lg:text-xs text-[#2D2D2D]">{{ product.name }}</p>
         <MeatballMenu
           :is-show="isOpen"
           :options="productOptions"
