@@ -137,10 +137,20 @@ export default {
           });
       } catch (error) {
         console.log(error);
-        this.$snackbar.show({
-          message: "Terjadi kesalahan. Coba beberapa saat lagi",
-          isSuccess: false,
-        });
+        if (error?.response?.status === 402) {
+          this.$snackbar.show({
+            message: "Judul artikel yang sama sudah ada",
+            isSuccess: false,
+          });
+        } else if (
+          error?.response?.status !== 500 &&
+          error?.response?.status !== 401
+        ) {
+          this.$snackbar.show({
+            message: "Terjadi kesalahan. Coba beberapa saat lagi",
+            isSuccess: false,
+          });
+        }
       }
       this.isLoading = false;
     },

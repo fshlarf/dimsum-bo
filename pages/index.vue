@@ -67,10 +67,12 @@ export default {
       isLoading: true,
     };
   },
+  mounted() {
+    this.getUsers();
+  },
   methods: {
     async getUsers() {
       this.isLoading = true;
-
       try {
         const getUsers = await this.$axios.get("/users", {
           params: this.filterGetUsers,
@@ -85,10 +87,6 @@ export default {
         }
       } catch (error) {
         console.log(error);
-        this.$snackbar.show({
-          message: "Terjadi kesalahan",
-          isSuccess: false,
-        });
       }
       this.isLoading = false;
     },
@@ -119,9 +117,6 @@ export default {
         });
       }
     },
-  },
-  mounted() {
-    this.getUsers();
   },
 };
 </script>

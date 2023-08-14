@@ -101,10 +101,7 @@ export default {
         this.password = result[0].password;
         this.selectedActive = result[0].isActive;
       } catch (error) {
-        this.$snackbar.show({
-          message: "Terjadi kesalahan. Coba beberapa saat lagi",
-          isSuccess: false,
-        });
+        console.log(error);
       }
     },
     async updateUser() {

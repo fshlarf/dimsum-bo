@@ -9,9 +9,11 @@
     </div>
   </div>
 </template>
+
 <script>
 import Navbar from "~/components/molleculs/navbar.vue";
 import SideBar from "~/components/molleculs/side-bar.vue";
+
 export default {
   components: {
     Navbar,
@@ -19,6 +21,7 @@ export default {
   },
 };
 </script>
+
 <style>
 body {
   font-family: "Poppins", sans-serif;

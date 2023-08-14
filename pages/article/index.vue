@@ -122,10 +122,6 @@ export default {
         }
       } catch (error) {
         console.log(error);
-        this.$snackbar.show({
-          message: "Terjadi kesalahan",
-          isSuccess: false,
-        });
       }
       this.isLoading = false;
     },

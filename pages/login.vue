@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#FFF9EB] h-screen w-full relative pt-[80px]">
+  <div class="bg-[#FFF9EB] h-screen relative pt-[200px] md:pt-[80px]">
     <div
       class="relative z-20 bg-white rounded-[15px] p-[20px] w-[90%] md:w-[540px] mx-auto"
     >
@@ -59,19 +59,18 @@
         Login
       </button>
     </div>
-    <div class="absolute z-10 right-0 top-0 h-screen">
-      <img class="h-screen" src="/images/login-bg.png" alt="login" />
+    <div class="absolute top-0 z-10 w-full h-screen overflow-hidden">
+      <img
+        class="float-right h-screen -mr-80 xl:mr-0"
+        src="/images/login-bg.png"
+        alt="login"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import Snackbar from "~/components/atoms/snackbar.vue";
-
 export default {
-  components: {
-    Snackbar,
-  },
   data() {
     return {
       email: "",

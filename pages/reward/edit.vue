@@ -76,11 +76,7 @@ export default {
           this.description = this.reward.description;
         }
       } catch (error) {
-        this.$snackbar.show({
-          message: "Terjadi kesalahan. Coba beberapa saat lagi",
-          isSuccess: false,
-        });
-        this.$router.push("/reward");
+        console.log(error);
       }
       this.isLoading = false;
     },

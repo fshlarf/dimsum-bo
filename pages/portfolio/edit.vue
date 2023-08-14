@@ -104,11 +104,7 @@ export default {
           await this.getPortfolioIcon(fileName);
         }
       } catch (error) {
-        this.$snackbar.show({
-          message: "Terjadi kesalahan. Coba beberapa saat lagi",
-          isSuccess: false,
-        });
-        this.$router.push("/portfolio");
+        console.log(error);
       }
       this.isLoading = false;
     },
