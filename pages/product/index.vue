@@ -31,7 +31,7 @@
             </div>
             <Button
               @click="$router.push('product/add')"
-              class="button-text text-white bg-[#F6B205] p-[12px] rounded-[8px]"
+              class="button-text text-white bg-[#F6B205] p-[12px] rounded-[8px] whitespace-nowrap"
               >Tambah Produk</Button
             >
           </div>
