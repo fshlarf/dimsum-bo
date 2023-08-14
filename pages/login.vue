@@ -109,7 +109,6 @@ export default {
             email,
             password,
           });
-          console.log("respon = ", response);
           if (response?.status === 200) {
             if (this.rememberMe) {
               const login = {

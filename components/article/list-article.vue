@@ -1,21 +1,21 @@
 <template>
-  <div>
-    <div class="flex lg:flex-row flex-col justify-between items-start truncate">
-      <div class="flex gap-[12px]">
-        <div class="w-[80px] h-[75px] rounded-[5px] overflow-hidden">
-          <img
-            :id="`article-${article.id}`"
-            alt="artikel"
-            class="min-w-full min-h-full object-cover"
-          />
-        </div>
-        <div class="w-[60%]">
+  <div class="w-full">
+    <div class="flex justify-between items-start gap-[12px]">
+      <div class="w-[80px] h-[75px] rounded-[5px] overflow-hidden">
+        <img
+          :id="`article-${article.id}`"
+          alt="artikel"
+          class="min-w-full min-h-full object-cover"
+        />
+      </div>
+      <div class="flex gap-[12px] lg:w-[calc(100%-184px)] overflow-hidden">
+        <div class="w-full">
           <h1
-            class="text-xs md:text-sm lg:text-base text-[#2D2D2D] font-semibold truncate w-[70%]"
+            class="text-xs md:text-sm lg:text-base text-[#2D2D2D] font-semibold truncate"
           >
             {{ article.title }}
           </h1>
-          <p class="hidden lg:block lg:text-sm text-[#474747] truncate w-[80%]">
+          <p class="hidden lg:block lg:text-sm text-[#474747] truncate">
             {{ article.content }}
           </p>
           <p

@@ -111,6 +111,7 @@ import Pagination from "~/components/molleculs/pagination.vue";
 
 export default {
   layout: "dashboard",
+  middleware: ["auth"],
   components: {
     TogleTitle,
     ProductWrapper,

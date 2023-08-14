@@ -1,10 +1,12 @@
 <template>
   <div>
     <section class="max-w-[164px]">
-      <div class="rounded-[10px] overflow-hidden">
+      <div
+        class="rounded-[10px] w-[138px] h-[105px] lg:w-[164px] lg:h-[124px] overflow-hidden mx-auto"
+      >
         <img
           alt="dimsum"
-          class="w-[138px] h-[105px] lg:w-[164px] lg:h-[124px] object-cover object-center"
+          class="w-full h-full object-cover object-center"
           :id="`product-image-${product.id}`"
         />
       </div>

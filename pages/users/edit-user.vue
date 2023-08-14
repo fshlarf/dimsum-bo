@@ -28,16 +28,6 @@
           classInput="w-full text-xs md:text-sm"
         />
         <div class="mt-[20px]">
-          <label class="text-sm lg:text-base text-[#2D2D2D] block"
-            >Passowrd User
-          </label>
-          <input
-            v-model="password"
-            type="password"
-            class="border-[1px] input-text mt-[8px] rounded-[8px] py-[10px] px-[16px] block focus:outline-[#F6B205]/40 w-full text-xs md:text-sm"
-          />
-        </div>
-        <div class="mt-[20px]">
           <div v-for="(opt, id) in options" :key="id" class="my-1">
             <input
               v-model="selectedActive"
@@ -83,12 +73,12 @@ export default {
       options: [
         {
           id: 1,
-          name: "Aktifkan User",
+          name: "Aktif",
           value: true,
         },
         {
           id: 2,
-          name: "Nonaktifkan User",
+          name: "Tidak aktif",
           value: false,
         },
       ],

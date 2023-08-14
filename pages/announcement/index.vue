@@ -61,6 +61,7 @@ import InputFile from "~/components/atoms/input-file-custom.vue";
 import Button from "~/components/atoms/button.vue";
 export default {
   layout: "dashboard",
+  middleware: ["auth"],
   components: {
     Input,
     InputFile,

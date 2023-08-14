@@ -45,6 +45,7 @@ import TableList from "~/components/dashboard/table-list.vue";
 import Pagination from "~/components/molleculs/pagination.vue";
 
 export default {
+  middleware: ["auth"],
   components: {
     Input,
     TableList,
