@@ -1,6 +1,7 @@
 export default async function ({ app, $axios }) {
   try {
-    await $axios.get("/users/me");
+    const user = await $axios.get("/users/me");
+    console.log("user: ", user.data.data.email);
   } catch (error) {
     console.log(error);
   }

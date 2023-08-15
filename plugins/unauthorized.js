@@ -7,7 +7,7 @@ export default function ({ app, $axios, redirect }) {
         message: "Sesi berakhir",
         isSuccess: false,
       });
-      return redirect("/login");
+      redirect("/login");
     } else if (error?.response?.status === 500) {
       console.log(error?.response?.data?.error || error?.message || error);
       showSnackbar({
