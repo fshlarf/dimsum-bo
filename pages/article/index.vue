@@ -6,23 +6,12 @@
           Artikel
         </h1>
         <div class="flex lg:flex-row lg:items-center gap-[16px]">
-          <div
-            class="absolute left-0 right-0 top-[100%] mt-[16px] lg:mt-0 lg:relative lg:w-full"
-          >
-            <img
-              src="/icons/search.svg"
-              alt="search"
-              class="absolute left-[12px] top-1/2 -translate-y-1/2"
-            />
-            <input
-              v-model="filterGetArticles.search"
-              type="text"
-              name=""
-              id=""
-              placeholder="Cari artikel disini.."
-              class="text-xs border-[1px] border-[#F8FAFB] bg-[#F8FAFB] focus:outline-none rounded-[8px] py-[12px] pl-[40px] lg:w-[244px] focus:border-[#F6B205]/40 w-full"
-            />
-          </div>
+          <InputSearch
+            v-model="filterGetArticles.search"
+            placeholder="Search here.."
+            classInput="xl:w-[500px] lg:w-[250px] w-full"
+            @enter="getArticles"
+          />
           <nuxt-link to="article/add">
             <Button
               class="text-sm text-white bg-[#F6B205] p-[12px] rounded-[8px] whitespace-nowrap"
@@ -76,6 +65,7 @@
 
 <script>
 import Button from "~/components/atoms/button.vue";
+import InputSearch from "~/components/atoms/input-search.vue";
 import ListArticle from "~/components/article/list-article.vue";
 import Pagination from "~/components/molleculs/pagination.vue";
 
@@ -86,6 +76,7 @@ export default {
     Button,
     ListArticle,
     Pagination,
+    InputSearch,
   },
   data() {
     return {

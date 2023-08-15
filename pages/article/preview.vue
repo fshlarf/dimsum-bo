@@ -115,7 +115,6 @@ export default {
       this.isLoading = false;
     },
     async getArticleImage(fileName) {
-      console.log(fileName);
       if (fileName) {
         const url = `bucket/images/articles/${fileName}`;
         await this.$axios

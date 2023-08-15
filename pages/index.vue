@@ -10,10 +10,11 @@
         <div
           class="relative flex items-center justify-between lg:justify-normal gap-[10px] mt-[20px] lg:mt-0"
         >
-          <Input
-            :withIcon="true"
+          <InputSearch
+            v-model="filterGetUsers.search"
             placeholder="Search here.."
             classInput="xl:w-[500px] lg:w-[250px] w-full"
+            @enter="getUsers"
           />
           <nuxt-link to="/users/add-user">
             <Button
@@ -40,14 +41,14 @@
 
 <script>
 import Button from "~/components/atoms/button.vue";
-import Input from "~/components/atoms/input-search.vue";
+import InputSearch from "~/components/atoms/input-search.vue";
 import TableList from "~/components/dashboard/table-list.vue";
 import Pagination from "~/components/molleculs/pagination.vue";
 
 export default {
   middleware: ["auth"],
   components: {
-    Input,
+    InputSearch,
     TableList,
     Pagination,
     Button,
