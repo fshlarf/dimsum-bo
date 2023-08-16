@@ -26,7 +26,7 @@
       <template v-if="!isLoading">
         <div
           class="mt-[100px] lg:mt-[45px] space-y-[16px] lg:space-y-0"
-          v-if="articles.length > 0"
+          v-if="articles.list.length > 0"
         >
           <div v-for="(article, id) in articles.list" :key="id">
             <hr v-if="id > 0" class="my-[20px] hidden lg:block" />
