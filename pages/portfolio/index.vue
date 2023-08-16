@@ -42,6 +42,8 @@
         </section>
       </div>
     </div>
+
+    <ModalConfirmation ref="modalConfirmation" />
   </div>
 </template>
 
@@ -50,6 +52,7 @@ import Button from "~/components/atoms/button.vue";
 import ListMenu from "~/components/portfolio/list-menu.vue";
 import Input from "~/components/atoms/input.vue";
 import InputFile from "~/components/atoms/input-file.vue";
+import ModalConfirmation from "~/components/atoms/modal-confirmation.vue";
 
 export default {
   layout: "dashboard",
@@ -59,6 +62,7 @@ export default {
     ListMenu,
     Input,
     InputFile,
+    ModalConfirmation,
   },
   data() {
     return {
@@ -105,7 +109,18 @@ export default {
       if (option.value == "edit") {
         this.$router.push(`/portfolio/edit?id=${portfolio.id}`);
       } else if (option.value == "delete") {
-        this.deletePortfolio(portfolio.id);
+        this.onClickDeletePortfolio(portfolio.id);
+      }
+    },
+    async onClickDeletePortfolio(id) {
+      const confirmation = await this.$refs.modalConfirmation.show({
+        title: "Hapus portofolio",
+        message: "Ingin menghapus portofolio?",
+        confirmText: "Ya, hapus",
+        cancelText: "Batal",
+      });
+      if (confirmation) {
+        this.deletePortfolio(id);
       }
     },
     async deletePortfolio(id) {

@@ -2,7 +2,7 @@
   <div class="wrapper lg:px-[70px] xl:px-[120px]">
     <div class="bg-white rounded-[15px]">
       <header
-        class="flex flex-col lg:flex-row lg:items-center justify-start lg:justify-between bg-[#FFFEFA] p-[20px] rounded-t-[15px]"
+        class="flex flex-col lg:flex-row lg:items-center justify-start lg:justify-between bg-[rgb(255,254,250)] p-[20px] rounded-t-[15px]"
       >
         <h2 class="text-base lg:text-lg text-[#2D2D2D] font-medium">
           List User
@@ -25,7 +25,7 @@
         </div>
       </header>
       <section>
-        <TableList :data-list="users.list" @delete="deleteUser" />
+        <TableList :data-list="users.list" @delete="onClickDeleteUser" />
       </section>
       <footer
         v-if="!isLoading && users.list.length > 0"
@@ -40,6 +40,8 @@
         />
       </footer>
     </div>
+
+    <ModalConfirmation ref="modalConfirmation" />
   </div>
 </template>
 
@@ -48,6 +50,7 @@ import Button from "~/components/atoms/button.vue";
 import InputSearch from "~/components/atoms/input-search.vue";
 import TableList from "~/components/dashboard/table-list.vue";
 import Pagination from "~/components/molleculs/pagination.vue";
+import ModalConfirmation from "~/components/atoms/modal-confirmation.vue";
 
 export default {
   middleware: ["auth"],
@@ -56,6 +59,7 @@ export default {
     TableList,
     Pagination,
     Button,
+    ModalConfirmation,
   },
   layout: "dashboard",
   data() {
@@ -101,6 +105,17 @@ export default {
         page: page,
       };
       this.getUsers();
+    },
+    async onClickDeleteUser(id) {
+      const confirmation = await this.$refs.modalConfirmation.show({
+        title: "Hapus user",
+        message: "Ingin menghapus user?",
+        confirmText: "Ya, hapus",
+        cancelText: "Batal",
+      });
+      if (confirmation) {
+        this.deleteUser(id);
+      }
     },
     async deleteUser(id) {
       try {

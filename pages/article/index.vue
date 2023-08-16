@@ -33,7 +33,7 @@
             :article="article"
             @edit="$router.push(`/article/edit?id=${article.id}`)"
             @preview="$router.push(`/article/preview?id=${article.id}`)"
-            @delete="deleteArticle"
+            @delete="onClickDeleteArticle"
           />
         </div>
 
@@ -56,6 +56,8 @@
         </div>
       </div>
     </div>
+
+    <ModalConfirmation ref="modalConfirmation" />
   </div>
 </template>
 
@@ -64,6 +66,7 @@ import Button from "~/components/atoms/button.vue";
 import InputSearch from "~/components/atoms/input-search.vue";
 import ListArticle from "~/components/article/list-article.vue";
 import Pagination from "~/components/molleculs/pagination.vue";
+import ModalConfirmation from "~/components/atoms/modal-confirmation.vue";
 
 export default {
   layout: "dashboard",
@@ -73,6 +76,7 @@ export default {
     ListArticle,
     Pagination,
     InputSearch,
+    ModalConfirmation,
   },
   data() {
     return {
@@ -118,6 +122,17 @@ export default {
         page: page,
       };
       this.getArticles();
+    },
+    async onClickDeleteArticle(id) {
+      const confirmation = await this.$refs.modalConfirmation.show({
+        title: "Hapus artikel",
+        message: "Ingin menghapus artikel?",
+        confirmText: "Ya, hapus",
+        cancelText: "Batal",
+      });
+      if (confirmation) {
+        this.deleteArticle(id);
+      }
     },
     async deleteArticle(id) {
       this.isLoadingDeleteArticle = true;

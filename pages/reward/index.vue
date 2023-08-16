@@ -18,9 +18,9 @@
         </section>
         <section
           v-if="!isLoading"
-          class="border-[1px] border-[#A0A3BD]/30 mt-[12px] rounded-[10px] w-full lg:w-[500px]"
+          class="border-[1px] border-[#A0A3BD]/30 mt-[12px] rounded-[10px] w-full lg:w-auto"
         >
-          <template v-if="portfolios.length > 0">
+          <template v-if="rewards.length > 0">
             <ListMenu
               v-for="(reward, id) in rewards"
               :key="id"
@@ -42,6 +42,8 @@
         </section>
       </div>
     </div>
+
+    <ModalConfirmation ref="modalConfirmation" />
   </div>
 </template>
 
@@ -50,6 +52,7 @@ import Button from "~/components/atoms/button.vue";
 import ListMenu from "~/components/reward/list-menu.vue";
 import Input from "~/components/atoms/input.vue";
 import InputFile from "~/components/atoms/input-file.vue";
+import ModalConfirmation from "~/components/atoms/modal-confirmation.vue";
 
 export default {
   layout: "dashboard",
@@ -59,6 +62,7 @@ export default {
     ListMenu,
     Input,
     InputFile,
+    ModalConfirmation,
   },
   data() {
     return {
@@ -105,7 +109,18 @@ export default {
       if (option.value == "edit") {
         this.$router.push(`/reward/edit?id=${reward.id}`);
       } else if (option.value == "delete") {
-        this.deleteReward(reward.id);
+        this.onClickDeleteReward(reward.id);
+      }
+    },
+    async onClickDeleteReward(id) {
+      const confirmation = await this.$refs.modalConfirmation.show({
+        title: "Hapus reward",
+        message: "Ingin menghapus reward?",
+        confirmText: "Ya, hapus",
+        cancelText: "Batal",
+      });
+      if (confirmation) {
+        this.deleteReward(id);
       }
     },
     async deleteReward(id) {

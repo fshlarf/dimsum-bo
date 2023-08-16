@@ -11,7 +11,9 @@
         />
       </div>
       <div class="flex justify-between items-center mt-[8px] px-2">
-        <p class="text-[10px] lg:text-xs text-[#2D2D2D]">{{ product.name }}</p>
+        <p class="text-[10px] lg:text-xs text-[#2D2D2D] one-line">
+          {{ product.name }}
+        </p>
         <MeatballMenu
           :is-show="isOpen"
           :options="productOptions"
@@ -19,12 +21,45 @@
           @onSelect="onSelectProductOption"
         />
       </div>
+      <div class="px-2 mt-1 md:mt-2 space-y-1 md:space-y-2">
+        <div class="flex items-center gap-1">
+          <img
+            class="w-[12px] md:w-[16px]"
+            src="/icons/product/box.svg"
+            alt="pcs"
+          />
+          <p class="text-[10px] md:text-[12px]">
+            {{ product.quantity }} {{ product.packaging }}
+          </p>
+        </div>
+        <div class="flex items-center gap-1">
+          <img
+            class="w-[12px] md:w-[16px]"
+            src="/icons/product/price-tag1.svg"
+            alt="reseller"
+          />
+          <p class="text-[10px] md:text-[12px]">
+            {{ toRupiah(product.resellerPrice) }}
+          </p>
+        </div>
+        <div class="flex items-center gap-1">
+          <img
+            class="w-[12px] md:w-[16px]"
+            src="/icons/product/price-tag2.svg"
+            alt="agent"
+          />
+          <p class="text-[10px] md:text-[12px]">
+            {{ toRupiah(product.agentPrice) }}
+          </p>
+        </div>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
 import MeatballMenu from "../atoms/meatball-menu.vue";
+import { toRupiah } from "~/helpers/common.js";
 
 export default {
   components: {
@@ -96,6 +131,7 @@ export default {
           });
       }
     },
+    toRupiah,
   },
 };
 </script>

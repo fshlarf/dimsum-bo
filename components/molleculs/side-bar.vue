@@ -2,7 +2,7 @@
   <div>
     <!-- max screen 768px -->
     <section
-      class="md:hidden space-y-[8px] bg-[#F6B205] w-max min-h-screen"
+      class="md:hidden space-y-[8px] bg-[#F6B205] w-[243px] min-h-screen"
       id="mobile-menu"
       v-show="isShow"
     >
@@ -13,7 +13,7 @@
         <img
           src="/icons/side-bar/close.svg"
           alt="close"
-          @click="$emit('clickCloseButton')"
+          @click="$emit('clickCloseButton'), (isShow = false)"
         />
       </div>
       <hr class="border-[1px] border-white/[35%]" />
@@ -21,7 +21,7 @@
         v-for="(menu, id) in menus"
         :key="id"
         class="w-full"
-        @click="$emit('handleClick')"
+        @click="$emit('handleClick'), (isShow = false)"
       >
         <nuxt-link
           :to="menu.link"

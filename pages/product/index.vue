@@ -31,7 +31,7 @@
             </div>
             <Button
               @click="$router.push('product/add')"
-              class="button-text text-white bg-[#F6B205] p-[12px] rounded-[8px]"
+              class="button-text text-white bg-[#F6B205] p-[12px] rounded-[8px] whitespace-nowrap"
               >Tambah Produk</Button
             >
           </div>
@@ -96,6 +96,8 @@
         </div>
       </div>
     </div>
+
+    <ModalConfirmation ref="modalConfirmation" />
   </div>
 </template>
 
@@ -104,6 +106,7 @@ import TogleTitle from "~/components/product/togle-title.vue";
 import ProductWrapper from "~/components/product/product-wrapper.vue";
 import CardProduct from "~/components/product/card-product.vue";
 import Pagination from "~/components/molleculs/pagination.vue";
+import ModalConfirmation from "~/components/atoms/modal-confirmation.vue";
 
 export default {
   layout: "dashboard",
@@ -113,6 +116,7 @@ export default {
     ProductWrapper,
     CardProduct,
     Pagination,
+    ModalConfirmation,
   },
   data() {
     return {
@@ -198,7 +202,18 @@ export default {
       if (option.value == "edit") {
         this.$router.push(`/product/edit?id=${product.id}`);
       } else if (option.value == "delete") {
-        this.deleteProduct(product.id);
+        this.onClickDeleteProduct(product.id);
+      }
+    },
+    async onClickDeleteProduct(id) {
+      const confirmation = await this.$refs.modalConfirmation.show({
+        title: "Hapus produk",
+        message: "Ingin menghapus produk?",
+        confirmText: "Ya, hapus",
+        cancelText: "Batal",
+      });
+      if (confirmation) {
+        this.deleteProduct(id);
       }
     },
     async deleteProduct(id) {

@@ -14,15 +14,8 @@
       </div>
       <div @click="isOpen = !isOpen">
         <img
-          v-if="!isOpen"
           src="/icons/navbar/hamburger-menu.svg"
           alt="menu"
-          class="md:hidden"
-        />
-        <img
-          v-else
-          src="/icons/navbar/round-close.svg"
-          alt="close"
           class="md:hidden"
         />
       </div>
@@ -40,6 +33,7 @@
       :is-show="isOpen"
       class="fixed top-0 right-0 md:hidden z-50"
       @clickCloseButton="isOpen = false"
+      @handleClick="isOpen = false"
     />
   </header>
 </template>
