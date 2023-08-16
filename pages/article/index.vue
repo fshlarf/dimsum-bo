@@ -51,11 +51,7 @@
         class="lg:h-[292px] flex justify-center items-center mt-[100px] lg:mt-[45px]"
       >
         <div>
-          <img
-            class="mx-auto"
-            src="/icons/article/not-found.svg"
-            alt="not found"
-          />
+          <img class="mx-auto" src="/icons/not-found.svg" alt="not found" />
           <p class="text-sm text-[#474747]">Oops! Hasil tidak ditemukan.</p>
         </div>
       </div>

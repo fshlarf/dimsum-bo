@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div
-      class="mx-auto w-max p-[20px] lg:p-[32px] rounded-[12px] card-option"
+      class="mx-auto w-full md:w-max p-[20px] lg:p-[32px] rounded-[12px] card-option"
       id="portfolio-option"
     >
       <div>
@@ -18,15 +18,27 @@
         </section>
         <section
           v-if="!isLoading"
-          class="border-[1px] border-[#A0A3BD]/30 mt-[12px] rounded-[10px]"
+          class="border-[1px] border-[#A0A3BD]/30 mt-[12px] rounded-[10px] w-full lg:w-[500px]"
         >
-          <ListMenu
-            v-for="(portfolio, id) in portfolios"
-            :key="id"
-            :portfolio="portfolio"
-            :portfolio-options="portfolioOptions"
-            @onSelect="onSelectPortfolioOption"
-          />
+          <template v-if="portfolios.length > 0">
+            <ListMenu
+              v-for="(portfolio, id) in portfolios"
+              :key="id"
+              :portfolio="portfolio"
+              :portfolio-options="portfolioOptions"
+              @onSelect="onSelectPortfolioOption"
+            />
+          </template>
+          <div v-else class="w-full h-[300px] flex items-center justify-center">
+            <div>
+              <img
+                class="mx-auto"
+                src="/icons/not-found.svg"
+                alt="portfolio not found"
+              />
+              <p class="text-center text-[12px] mt-4">Data belum tersedia</p>
+            </div>
+          </div>
         </section>
       </div>
     </div>

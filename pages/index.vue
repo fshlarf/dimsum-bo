@@ -27,8 +27,12 @@
       <section>
         <TableList :data-list="users.list" @delete="deleteUser" />
       </section>
-      <footer class="bg-[#FFFEFA] rounded-b-[15px] py-[20px] w-max mx-auto">
+      <footer
+        v-if="!isLoading && users.list.length > 0"
+        class="bg-[#FFFEFA] rounded-b-[15px] py-[20px] w-full"
+      >
         <Pagination
+          class="!mx-auto w-max"
           :is-loading="isLoading"
           :pagination="users.pagination"
           :max-displayed-pages="10"
