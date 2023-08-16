@@ -23,38 +23,40 @@
       <hr
         class="left-0 right-0 absolute border-[1px] border-[#D9D9D9]/20 hidden lg:block lg:mt-[16px]"
       />
-      <div
-        class="mt-[100px] lg:mt-[45px] space-y-[16px] lg:space-y-0"
-        v-if="!isLoading"
-      >
-        <div v-for="(article, id) in articles.list" :key="id">
-          <hr v-if="id > 0" class="my-[20px] hidden lg:block" />
-          <ListArticle
-            :article="article"
-            @edit="$router.push(`/article/edit?id=${article.id}`)"
-            @preview="$router.push(`/article/preview?id=${article.id}`)"
-            @delete="onClickDeleteArticle"
-          />
-        </div>
+      <template v-if="!isLoading">
+        <div
+          class="mt-[100px] lg:mt-[45px] space-y-[16px] lg:space-y-0"
+          v-if="articles.length > 0"
+        >
+          <div v-for="(article, id) in articles.list" :key="id">
+            <hr v-if="id > 0" class="my-[20px] hidden lg:block" />
+            <ListArticle
+              :article="article"
+              @edit="$router.push(`/article/edit?id=${article.id}`)"
+              @preview="$router.push(`/article/preview?id=${article.id}`)"
+              @delete="onClickDeleteArticle"
+            />
+          </div>
 
-        <div class="mt-12 block max-w-max mx-auto">
-          <Pagination
-            :is-loading="isLoading"
-            :pagination="articles.pagination"
-            :max-displayed-pages="5"
-            @onClickPagination="onClickPagination"
-          />
+          <div class="mt-12 block max-w-max mx-auto">
+            <Pagination
+              :is-loading="isLoading"
+              :pagination="articles.pagination"
+              :max-displayed-pages="5"
+              @onClickPagination="onClickPagination"
+            />
+          </div>
         </div>
-      </div>
-      <div
-        v-else
-        class="lg:h-[292px] flex justify-center items-center mt-[100px] lg:mt-[45px]"
-      >
-        <div>
-          <img class="mx-auto" src="/icons/not-found.svg" alt="not found" />
-          <p class="text-sm text-[#474747]">Oops! Hasil tidak ditemukan.</p>
+        <div
+          v-else
+          class="lg:h-[292px] flex justify-center items-center mt-[100px] lg:mt-[45px]"
+        >
+          <div>
+            <img class="mx-auto" src="/icons/not-found.svg" alt="not found" />
+            <p class="text-sm text-[#474747]">Oops! Hasil tidak ditemukan.</p>
+          </div>
         </div>
-      </div>
+      </template>
     </div>
 
     <ModalConfirmation ref="modalConfirmation" />
