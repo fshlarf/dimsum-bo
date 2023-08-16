@@ -38,8 +38,8 @@
     </nav>
     <Sidebar
       :is-show="isOpen"
-      class="absolute top-[95%] right-[34px] md:hidden z-50"
-      @handleClick="isOpen = false"
+      class="fixed top-0 right-0 md:hidden z-50"
+      @clickCloseButton="isOpen = false"
     />
   </header>
 </template>

@@ -1,7 +1,22 @@
 <template>
   <div>
     <!-- max screen 768px -->
-    <section class="md:hidden space-y-[8px]" id="mobile-menu" v-show="isShow">
+    <section
+      class="md:hidden space-y-[8px] bg-[#F6B205] w-max min-h-screen"
+      id="mobile-menu"
+      v-show="isShow"
+    >
+      <div
+        class="flex items-center justify-between pt-[35px] px-[20px] pb-[12px]"
+      >
+        <h3 class="text-base font-semibold text-white">Menu</h3>
+        <img
+          src="/icons/side-bar/close.svg"
+          alt="close"
+          @click="$emit('clickCloseButton')"
+        />
+      </div>
+      <hr class="border-[1px] border-white/[35%]" />
       <div
         v-for="(menu, id) in menus"
         :key="id"
@@ -12,28 +27,25 @@
           :to="menu.link"
           class="flex items-center gap-[8px] p-[16px]"
           :class="{
-            'bg-[#F6B205]/10 ': activePage === menu.slug,
+            'bg-white/[25%] ': activePage === menu.slug,
           }"
         >
           <img
-            :src="[
-              activePage === menu.slug
-                ? `/icons/side-bar/${menu.icon}-active.svg`
-                : `/icons/side-bar/${menu.icon}.svg `,
-            ]"
+            :src="`/icons/side-bar/${menu.icon}-mobile.svg`"
             :alt="menu.name"
           />
-          <h4 :class="{ 'text-[#F6B205]': activePage === menu.slug }">
+          <h4 class="text-white font-medium text-sm">
             {{ menu.name }}
           </h4>
         </nuxt-link>
       </div>
+      <hr class="border-[1px] border-white/[35%]" />
       <section
         class="flex items-center gap-[8px] p-[16px] mt-[35px] cursor-pointer"
         @click="logout"
       >
-        <img src="/icons/side-bar/logout.svg" alt="logout" />
-        <h4>Log out</h4>
+        <img src="/icons/side-bar/logout-mobile.svg" alt="logout" />
+        <h4 class="text-white font-medium text-sm">Log out</h4>
       </section>
     </section>
     <!-- end -->
@@ -174,7 +186,6 @@ export default {
 #mobile-menu {
   border-radius: 10px 0px 10px 10px;
   border: 1px solid rgba(217, 217, 217, 0.3);
-  background: #fff;
   box-shadow: 0px 2px 10px 0px rgba(217, 217, 217, 0.3);
 }
 </style>
