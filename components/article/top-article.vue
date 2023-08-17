@@ -1,5 +1,5 @@
 <template>
-  <div class="top-article flex items-center gap-[16px] p-[16px]">
+  <div class="top-article flex items-start gap-[16px] p-[16px]">
     <img
       src="/images/product/dimsum-ayam.png"
       alt="dimsum"
@@ -7,7 +7,7 @@
     />
     <div>
       <p class="text-base text-[#4D4D4D]">Apa Manfaat Dimsum Untuk Tubuh?</p>
-      <p class="text-xs text-[##4D4D4D]/60 pt-[4px]">December 30, 2022</p>
+      <p class="text-xs text-[#4D4D4D]/60 pt-[4px]">December 30, 2022</p>
       <p class="cursor-pointer font-medium text-[#F6B205] pt-[12px]">
         Read more
       </p>

@@ -1,14 +1,18 @@
 <template>
-  <div class="w-full min-h-screen bg-white">
-    <div class="pt-[48px] px-[160px]">
+  <div class="w-full min-h-screen bg-white pb-[30px]">
+    <div
+      class="px-[20px] py-[30px] md:px-[40px] md:py-[50] lg:pt-[45px] lg:px-[100px] xl:pt-[48px] xl:px-[160px]"
+    >
       <img
         src="/icons/arrow-back.svg"
         alt="back"
         class="cursor-pointer"
-        @click="$router.push('/article')"
+        @click="$router.push('/artikel')"
       />
       <div v-show="!isLoading" class="mt-[32px]">
-        <div class="w-full h-[380px] overflow-hidden rounded-[25px]">
+        <div
+          class="w-full h-[166px] md:h-[200px] lg:h-[250px] xl:h-[380px] overflow-hidden rounded-[15px] md:rounded-[25px]"
+        >
           <img
             v-show="article.fileName"
             alt="preview artikel"
@@ -17,18 +21,20 @@
           />
         </div>
         <section class="grid grid-cols-3 mt-[32px] gap-x-[64px]">
-          <h1 class="text-[40px] font-bold text-[#2D2D2D] col-span-3">
+          <h1
+            class="text-[20px] md:text-[24px] lg:text-[40px] font-bold text-[#2D2D2D] col-span-3 max-w-[658px]"
+          >
             {{ article.title }}
           </h1>
-          <div class="col-span-2">
+          <div class="col-span-3 lg:col-span-2">
             <section
-              class="text-sm text-[#717171] flex items-center gap-[16px] my-[16px] border-b-[1px] border-[#E8E7E7]/50 pb-[16px]"
+              class="text-xs lg:text-sm text-[#717171] flex items-center xl:gap-[16px] my-[16px] border-b-[1px] border-[#E8E7E7]/50 pb-[16px]"
             >
               <p class="text-[#4D4D4D] font-medium">
                 Oleh: Produsen Dimsum Medan
               </p>
-              <p>{{ formatDate(article.createdAt) }}</p>
-              <div class="flex items-center gap-[4px]">
+              <p class="pl-[12px]">{{ formatDate(article.createdAt) }}</p>
+              <div class="f items-center gap-[4px] hidden">
                 <svg
                   width="18"
                   height="19"
@@ -46,17 +52,28 @@
               </div>
             </section>
             <div class="text-[#717171] text-base text-justify space-y-[16px]">
-              <p class="whitespace-pre-line" v-html="article.content"></p>
+              <p
+                class="whitespace-pre-line text-xs md:text-sm lg:text-base"
+                v-html="article.content"
+              ></p>
             </div>
           </div>
-          <div class="space-y-[16px]">
-            <h1 class="text-[#B71A1B] text-[24px] font-bold">Top Article</h1>
-            <TopArticle />
-            <TopArticle />
-            <TopArticle />
-            <TopArticle />
+          <div
+            class="space-y-[16px] mt-[32px] lg:mt-0 col-span-3 lg:col-span-1"
+          >
+            <h1
+              class="text-[#B71A1B] text-base md:text-lg lg:text-[24px] font-bold mb-[16px]"
+            >
+              Artikel Terbaru
+            </h1>
+            <div class="space-y-[12px]">
+              <TopArticle />
+              <TopArticle />
+              <TopArticle />
+              <TopArticle />
+            </div>
             <div
-              class="flex items-center gap-[8px] w-max mx-auto text-sm text-[#0194F3] cursor-pointer"
+              class="items-center gap-[8px] w-max mx-auto text-sm text-[#0194F3] cursor-pointer hidden"
             >
               <p>Tampilkan semua</p>
               <svg
@@ -90,12 +107,18 @@ export default {
     return {
       article: {},
       isLoading: true,
+      latestArticle: [],
+      filterLatestArticle: {
+        limit: 5,
+      },
+      articleId: null,
     };
   },
   mounted() {
     const { id } = this.$route.query;
-    if (id) {
-      this.getArticleById(id);
+    this.articleId = id;
+    if (this.articleId) {
+      this.getArticleById(this.articleId);
     }
   },
   methods: {
