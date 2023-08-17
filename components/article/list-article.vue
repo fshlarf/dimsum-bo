@@ -5,7 +5,7 @@
         <img
           :id="`article-${article.id}`"
           alt="artikel"
-          class="min-w-full min-h-full object-cover"
+          class="w-full h-full object-cover object-center"
         />
       </div>
       <div class="flex gap-[12px] lg:w-[calc(100%-184px)] overflow-hidden">

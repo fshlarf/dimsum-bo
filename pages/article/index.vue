@@ -1,18 +1,28 @@
 <template>
   <div class="wrapper lg:px-[40px] xl:px-[120px]">
     <div class="article-wrapper p-[20px] lg:p-[32px] rounded-[12px] relative">
-      <header class="flex justify-between lg:items-center relative">
-        <h1 class="title-text text-[#2D2D2D] font-semibold pt-[12px]">
-          Artikel
-        </h1>
-        <div class="flex lg:flex-row lg:items-center gap-[16px]">
+      <header class="md:flex md:justify-between lg:items-center relative">
+        <div class="flex justify-between items-center">
+          <h1 class="title-text text-[#2D2D2D] font-semibold pt-[12px">
+            Artikel
+          </h1>
+          <nuxt-link class="md:hidden" to="article/add">
+            <Button
+              class="text-sm text-white bg-[#F6B205] py-[8px] px-[12px] rounded-[8px] whitespace-nowrap"
+              >Tambah Artikel</Button
+            >
+          </nuxt-link>
+        </div>
+        <div
+          class="md:flex lg:flex-row md:items-center gap-[16px] mt-4 md:mt-0"
+        >
           <InputSearch
             v-model="filterGetArticles.search"
             placeholder="Search here.."
             classInput="xl:w-[500px] lg:w-[250px] w-full"
             @enter="getArticles"
           />
-          <nuxt-link to="article/add">
+          <nuxt-link class="hidden md:block" to="article/add">
             <Button
               class="text-sm text-white bg-[#F6B205] p-[12px] rounded-[8px] whitespace-nowrap"
               >Tambah Artikel</Button
@@ -25,7 +35,7 @@
       />
       <template v-if="!isLoading">
         <div
-          class="mt-[100px] lg:mt-[45px] space-y-[16px] lg:space-y-0"
+          class="mt-[45px] space-y-[16px] lg:space-y-0"
           v-if="articles.list.length > 0"
         >
           <div v-for="(article, id) in articles.list" :key="id">
