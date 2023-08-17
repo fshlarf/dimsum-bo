@@ -7,7 +7,7 @@
         src="/icons/arrow-back.svg"
         alt="back"
         class="cursor-pointer"
-        @click="$router.push('/artikel')"
+        @click="$router.push('/article')"
       />
       <div v-show="!isLoading" class="mt-[32px]">
         <div
