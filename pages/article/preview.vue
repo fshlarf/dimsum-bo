@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full min-h-screen bg-white pb-[30px]">
+  <div id="article-preview" class="w-full min-h-screen bg-white pb-[30px]">
     <div
-      class="px-[20px] py-[30px] md:px-[40px] md:py-[50] lg:pt-[45px] lg:px-[100px] xl:pt-[48px] xl:px-[160px]"
+      class="px-[20px] py-[30px] md:px-[40px] md:py-[50] lg:pt-[45px] lg:px-[100px] xl:pt-[48px] xl:max-w-[1120px] xl:px-0 mx-auto"
     >
       <img
         src="/icons/arrow-back.svg"
@@ -26,7 +26,7 @@
           >
             {{ article.title }}
           </h1>
-          <div class="col-span-3 lg:col-span-2">
+          <div class="col-span-3 xl:col-span-2">
             <section
               class="text-xs lg:text-sm text-[#717171] flex items-center xl:gap-[16px] my-[16px] border-b-[1px] border-[#E8E7E7]/50 pb-[16px]"
             >
@@ -59,7 +59,7 @@
             </div>
           </div>
           <div
-            class="space-y-[16px] mt-[32px] lg:mt-0 col-span-3 lg:col-span-1"
+            class="space-y-[16px] mt-[32px] xl:mt-0 col-span-3 xl:col-span-1"
           >
             <h1
               class="text-[#B71A1B] text-base md:text-lg lg:text-[24px] font-bold mb-[16px]"
@@ -206,3 +206,9 @@ export default {
   },
 };
 </script>
+
+<style>
+#article-preview {
+  font-family: "Quicksand", sans-serif;
+}
+</style>
