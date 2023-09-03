@@ -17,6 +17,13 @@
           placeholder="Masukkan keterangan disini"
           class-input="w-full text-base text-[#A0A3BD]"
         />
+        <Input
+          v-model="link"
+          label="Link"
+          placeholder="Masukkan link pengumuman"
+          class-input="w-full text-base text-[#A0A3BD]"
+          class="mt-[20px]"
+        />
         <div class="mt-[20px] h-[70px] md:-[100px] lg:h-[176px] relative">
           <div class="flex justify-between items-center">
             <p class="text-sm lg:text-base">Gambar</p>
@@ -74,6 +81,7 @@ export default {
       announcement: {},
       isLoading: true,
       name: "",
+      link: "",
       isLoadingSaveAnnouncement: false,
     };
   },
@@ -97,6 +105,7 @@ export default {
         if (getAnnouncement.data) {
           this.announcement = getAnnouncement.data.data;
           this.name = this.announcement.name;
+          this.link = this.announcement.link;
           if (this.announcement) {
             await this.getAnnouncementPoster(this.announcement.fileName);
           }
@@ -142,7 +151,7 @@ export default {
       }
     },
     async createAnnouncement() {
-      if (!this.name || !this.imageFile) {
+      if (!this.name || !this.link || !this.imageFile) {
         this.$snackbar.show({
           message: "Form tidak lengkap",
           isSuccess: false,
@@ -153,6 +162,7 @@ export default {
       try {
         const formData = new FormData();
         formData.append("name", this.name);
+        formData.append("link", this.link);
         formData.append("file", this.imageFile);
         await this.$axios
           .post("/announcements", formData, {
@@ -181,7 +191,7 @@ export default {
       this.isLoadingSaveAnnouncement = false;
     },
     async updateAnnouncement() {
-      if (!this.name || !this.imageFile) {
+      if (!this.name || !this.link || !this.imageFile) {
         this.$snackbar.show({
           message: "Form tidak lengkap",
           isSuccess: false,
@@ -192,6 +202,7 @@ export default {
       try {
         const formData = new FormData();
         formData.append("name", this.name);
+        formData.append("link", this.link);
         formData.append("file", this.imageFile);
         await this.$axios
           .patch(`/announcements/${this.announcement.id}`, formData, {

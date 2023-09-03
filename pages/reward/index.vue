@@ -21,13 +21,19 @@
           class="border-[1px] border-[#A0A3BD]/30 mt-[12px] rounded-[10px] w-full lg:w-auto"
         >
           <template v-if="rewards.length > 0">
-            <ListMenu
+            <DraggableList
+              :list="rewards"
+              :options="rewardOptions"
+              @onSelectOption="onSelectRewardOption"
+              @updateListOrder="updateRewardsOrder"
+            />
+            <!-- <ListMenu
               v-for="(reward, id) in rewards"
               :key="id"
               :reward="reward"
               :reward-options="rewardOptions"
               @onSelect="onSelectRewardOption"
-            />
+            /> -->
           </template>
           <div v-else class="w-full h-[300px] flex items-center justify-center">
             <div>
@@ -53,6 +59,7 @@ import ListMenu from "~/components/reward/list-menu.vue";
 import Input from "~/components/atoms/input.vue";
 import InputFile from "~/components/atoms/input-file.vue";
 import ModalConfirmation from "~/components/atoms/modal-confirmation.vue";
+import DraggableList from "~/components/molleculs/draggable-list.vue";
 
 export default {
   layout: "dashboard",
@@ -63,6 +70,7 @@ export default {
     Input,
     InputFile,
     ModalConfirmation,
+    DraggableList,
   },
   data() {
     return {
@@ -99,7 +107,12 @@ export default {
             limit: 100,
           },
         });
-        this.rewards = getRewards.data.data;
+        this.rewards = getRewards.data.data.map((reward) => {
+          return {
+            ...reward,
+            title: reward.name,
+          };
+        });
       } catch (error) {
         console.log(error);
       }
@@ -144,6 +157,34 @@ export default {
         });
       }
       this.isLoadingDeleteReward = false;
+    },
+    async updateRewardsOrder(list) {
+      for (var i = 0; i < list.length; i++) {
+        const reward = list[i];
+        const payload = {
+          id: reward.id,
+          sequence: i + 1,
+        };
+        await this.updateRewardSequence(payload);
+      }
+      this.$snackbar.show({
+        message: "Success",
+        isSuccess: true,
+      });
+    },
+    async updateRewardSequence(data) {
+      this.isLoadingUpdatePortfolioSequence = true;
+      try {
+        await this.$axios.patch(`/rewards/${data.id}/sequence`, {
+          sequence: data.sequence,
+        });
+      } catch (error) {
+        this.$snackbar.show({
+          message: "Gagal mengurut ulang portfolio",
+          isSuccess: false,
+        });
+      }
+      this.isLoadingUpdatePortfolioSequence = false;
     },
   },
 };

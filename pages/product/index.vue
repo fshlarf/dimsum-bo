@@ -74,6 +74,7 @@
               :key="id"
               :product="product"
               @onSelectOption="onSelectProductOption"
+              @onClickFavorite="onClickFavorite"
             />
           </div>
           <div v-else class="w-full h-[292px] flex justify-center items-center">
@@ -188,8 +189,19 @@ export default {
         });
         if (getProducts.data) {
           const { data, pagination } = getProducts.data;
+          let list = [];
+          data.map((product) => {
+            product.variants.map((variant) => {
+              list.push({
+                ...product,
+                variant: variant,
+              });
+            });
+          });
+          console.log(data);
+          console.log(list);
           this.products = {
-            list: data,
+            list: list,
             pagination,
           };
         }
@@ -197,6 +209,13 @@ export default {
         console.log(error);
       }
       this.isLoadingProduct = false;
+    },
+    onClickFavorite(product) {
+      if (product.isFavorited) {
+        this.removeProductFromFavorited(product.id);
+      } else {
+        this.addProductToFavorited(product.id);
+      }
     },
     onSelectProductOption(option, product) {
       if (option.value == "edit") {
@@ -214,6 +233,56 @@ export default {
       });
       if (confirmation) {
         this.deleteProduct(id);
+      }
+    },
+    async addProductToFavorited(id) {
+      const confirmation = await this.$refs.modalConfirmation.show({
+        title: "Tambah ke daftar favorit",
+        message: "Ingin menambah produk ke daftar favorit?",
+        confirmText: "Ya, tambah",
+        cancelText: "Batal",
+      });
+      if (!confirmation) {
+        return;
+      }
+      try {
+        await this.$axios.patch(`/products/${id}/favorited/add`);
+        this.$snackbar.show({
+          message: "Produk ditambahkan ke daftar favorit",
+          isSuccess: true,
+        });
+        this.getProducts();
+      } catch (error) {
+        console.log(error);
+        this.$snackbar.show({
+          message: "Gagal menambahkan ke daftar favorit",
+          isSuccess: false,
+        });
+      }
+    },
+    async removeProductFromFavorited(id) {
+      const confirmation = await this.$refs.modalConfirmation.show({
+        title: "Hapus dari daftar favorit",
+        message: "Ingin menghapus produk dari daftar favorit?",
+        confirmText: "Ya, hapus",
+        cancelText: "Batal",
+      });
+      if (!confirmation) {
+        return;
+      }
+      try {
+        await this.$axios.patch(`/products/${id}/favorited/remove`);
+        this.$snackbar.show({
+          message: "Produk dihapus dari daftar favorit",
+          isSuccess: true,
+        });
+        this.getProducts();
+      } catch (error) {
+        console.log(error);
+        this.$snackbar.show({
+          message: "Gagal menghapus dari daftar favorit",
+          isSuccess: false,
+        });
       }
     },
     async deleteProduct(id) {

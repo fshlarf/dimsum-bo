@@ -1,7 +1,10 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper mx-auto lg:max-w-[500px] xl:max-w-[800px]">
+    <nuxt-link to="/">
+      <img src="/icons/arrow-back.svg" alt="back" />
+    </nuxt-link>
     <div
-      class="add-user mx-auto lg:max-w-[500px] xl:max-w-[800px] p-[20px] lg:p-[32px] rounded-[12px] relative"
+      class="add-user p-[20px] lg:p-[32px] rounded-[12px] relative mt-[20px]"
     >
       <header class="text-[#2D2D2D] title-text font-semibold">Edit User</header>
       <hr

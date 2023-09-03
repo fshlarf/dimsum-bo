@@ -105,9 +105,15 @@ export default {
       activePage: "",
       menus: [
         {
-          name: "Dashboard",
+          name: "User",
           link: "/",
           slug: "",
+          icon: "dashboard",
+        },
+        {
+          name: "Mitra",
+          link: "/partner",
+          slug: "partner",
           icon: "dashboard",
         },
         {

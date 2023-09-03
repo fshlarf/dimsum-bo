@@ -21,13 +21,19 @@
           class="border-[1px] border-[#A0A3BD]/30 mt-[12px] rounded-[10px] w-full lg:w-[500px]"
         >
           <template v-if="portfolios.length > 0">
-            <ListMenu
+            <DraggableList
+              :list="portfolios"
+              :options="portfolioOptions"
+              @onSelectOption="onSelectPortfolioOption"
+              @updateListOrder="updatePortfoliosOrder"
+            />
+            <!-- <ListMenu
               v-for="(portfolio, id) in portfolios"
               :key="id"
               :portfolio="portfolio"
               :portfolio-options="portfolioOptions"
               @onSelect="onSelectPortfolioOption"
-            />
+            /> -->
           </template>
           <div v-else class="w-full h-[300px] flex items-center justify-center">
             <div>
@@ -50,6 +56,7 @@
 <script>
 import Button from "~/components/atoms/button.vue";
 import ListMenu from "~/components/portfolio/list-menu.vue";
+import DraggableList from "~/components/molleculs/draggable-list.vue";
 import Input from "~/components/atoms/input.vue";
 import InputFile from "~/components/atoms/input-file.vue";
 import ModalConfirmation from "~/components/atoms/modal-confirmation.vue";
@@ -63,6 +70,7 @@ export default {
     Input,
     InputFile,
     ModalConfirmation,
+    DraggableList,
   },
   data() {
     return {
@@ -99,7 +107,14 @@ export default {
             limit: 100,
           },
         });
-        this.portfolios = getPortfolios.data.data;
+        const { data } = getPortfolios.data;
+        this.portfolios = data.map((portfolio) => {
+          return {
+            ...portfolio,
+            title: portfolio.name,
+            isOpen: false,
+          };
+        });
       } catch (error) {
         console.log(error);
       }
@@ -144,6 +159,34 @@ export default {
         });
       }
       this.isLoadingDeletePortfolio = false;
+    },
+    async updatePortfoliosOrder(list) {
+      for (var i = 0; i < list.length; i++) {
+        const portfolio = list[i];
+        const payload = {
+          id: portfolio.id,
+          sequence: i + 1,
+        };
+        await this.updatePortfolioSequence(payload);
+      }
+      this.$snackbar.show({
+        message: "Success",
+        isSuccess: true,
+      });
+    },
+    async updatePortfolioSequence(data) {
+      this.isLoadingUpdatePortfolioSequence = true;
+      try {
+        await this.$axios.patch(`/portfolios/${data.id}/sequence`, {
+          sequence: data.sequence,
+        });
+      } catch (error) {
+        this.$snackbar.show({
+          message: "Gagal mengurut ulang portfolio",
+          isSuccess: false,
+        });
+      }
+      this.isLoadingUpdatePortfolioSequence = false;
     },
   },
 };

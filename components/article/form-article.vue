@@ -36,7 +36,7 @@
         class-input="w-full"
       />
       <TextArea class-text="h-[268px]" label="Konten" class="mt-[20px]" />
-      <div class="text-right mt-[60px]">
+      <div class="text-right mt-[20px]">
         <Button
           class="text-white bg-[#F6B205] px-[20px] py-[8px] text-sm font-semibold rounded-[8px]"
           @click="$emit('clickBtnSave')"

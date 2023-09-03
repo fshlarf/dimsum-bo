@@ -1,5 +1,8 @@
 <template>
   <div class="wrapper">
+    <nuxt-link to="/">
+      <img src="/icons/arrow-back.svg" alt="back" />
+    </nuxt-link>
     <div
       class="add-user mx-auto lg:max-w-[500px] xl:max-w-[800px] p-[20px] lg:p-[32px] rounded-[12px] relative"
     >

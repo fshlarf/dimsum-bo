@@ -2,24 +2,36 @@
   <div>
     <section class="max-w-[164px]">
       <div
-        class="rounded-[10px] w-[138px] h-[105px] lg:w-[164px] lg:h-[124px] overflow-hidden mx-auto"
+        class="rounded-[10px] w-[138px] h-[105px] lg:w-[164px] lg:h-[124px] overflow-hidden mx-auto relative"
       >
+        <MeatballMenu
+          :is-show="isOpen"
+          :options="productOptions"
+          @clickMenu="isOpen = !isOpen"
+          @onSelect="onSelectProductOption"
+          class="absolute z-30 top-1 right-1"
+        />
         <img
+          :src="product.imageLink"
           alt="dimsum"
           class="w-full h-full object-cover object-center"
           :id="`product-image-${product.id}`"
         />
       </div>
       <div class="flex justify-between items-center mt-[8px] px-2">
-        <p class="text-[10px] lg:text-xs text-[#2D2D2D] one-line">
+        <p
+          class="text-[10px] lg:text-xs text-[#2D2D2D] one-line overflow-hidden"
+        >
           {{ product.name }}
         </p>
-        <MeatballMenu
-          :is-show="isOpen"
-          :options="productOptions"
-          @clickMenu="isOpen = !isOpen"
-          @onSelect="onSelectProductOption"
-        />
+        <button @click="$emit('onClickFavorite', product)">
+          <img
+            v-if="product.isFavorited"
+            src="/icons/star-active.svg"
+            alt="produk favorit"
+          />
+          <img v-else src="/icons/star-empty.svg" alt="produk biasa" />
+        </button>
       </div>
       <div class="px-2 mt-1 md:mt-2 space-y-1 md:space-y-2">
         <div class="flex items-center gap-1">
@@ -29,7 +41,9 @@
             alt="pcs"
           />
           <p class="text-[10px] md:text-[12px]">
-            {{ product.quantity }} {{ product.packaging }}
+            {{ product.variant.quantity }}
+            {{ product.variant.unit.toLowerCase() }}/
+            {{ product.variant.packaging }}
           </p>
         </div>
         <div class="flex items-center gap-1">
@@ -39,7 +53,7 @@
             alt="reseller"
           />
           <p class="text-[10px] md:text-[12px]">
-            {{ toRupiah(product.resellerPrice) }}
+            {{ toRupiah(product.variant.resellerPrice) }}
           </p>
         </div>
         <div class="flex items-center gap-1">
@@ -49,7 +63,7 @@
             alt="agent"
           />
           <p class="text-[10px] md:text-[12px]">
-            {{ toRupiah(product.agentPrice) }}
+            {{ toRupiah(product.variant.agentPrice) }}
           </p>
         </div>
       </div>
