@@ -111,6 +111,7 @@ export default {
           return {
             ...reward,
             title: reward.name,
+            isOpen: false,
           };
         });
       } catch (error) {
