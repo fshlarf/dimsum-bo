@@ -27,6 +27,7 @@
       </div>
       <div class="mt-[24px] text-right">
         <Button
+          :loading="isLoadingAddReward"
           btnClass="text-white bg-[#F6B205] button-text font-semibold !px-[24px] py-[8px] rounded-[8px]"
           @click="OnClickSaveReward"
           >Simpan</Button
@@ -54,7 +55,7 @@ export default {
     return {
       name: "",
       description: "",
-      isLoading: false,
+      isLoadingAddReward: false,
     };
   },
   methods: {
@@ -66,7 +67,7 @@ export default {
         });
         return;
       }
-      this.isLoading = true;
+      this.isLoadingAddReward = true;
       try {
         await this.$axios
           .post("/rewards", {
@@ -94,7 +95,7 @@ export default {
           isSuccess: false,
         });
       }
-      this.isLoading = false;
+      this.isLoadingAddReward = false;
     },
   },
 };

@@ -25,6 +25,7 @@
       </div>
       <div class="mt-[24px] text-right">
         <Button
+          :loading="isLoadingEditReward"
           btnClass="text-white bg-[#F6B205] button-textfont-semibold !px-[24px] py-[8px] rounded-[8px]"
           @click="onSaveReward"
           >Simpan</Button

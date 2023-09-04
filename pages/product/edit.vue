@@ -203,6 +203,7 @@
           />
           <div class="text-right mt-[20px]">
             <Button
+              :loading="isLoadingEditProduct"
               class="text-white bg-[#F6B205] px-[40px] py-[8px] button-text font-semibold rounded-[8px]"
               @click="editProductNonDimsum"
               >Simpan</Button
@@ -263,8 +264,7 @@ export default {
       mikaAgentPrice: null,
       mikaDescription: "",
       isLoading: true,
-      isLoadingEditProductNonDimsum: false,
-      isLoadingeditProductDimsum: false,
+      isLoadingEditProduct: false,
       unitOptions: [
         {
           name: "Pcs",
@@ -442,7 +442,7 @@ export default {
         return;
       }
 
-      this.isLoadingEditProductDimsum = true;
+      this.isLoadingEditProduct = true;
       try {
         const formData = new FormData();
         formData.append("name", this.name);
@@ -492,7 +492,7 @@ export default {
           });
         }
       }
-      this.isLoadingEditProductDimsum = false;
+      this.isLoadingEditProduct = false;
     },
     async editProductNonDimsum() {
       this.agentPrice = this.resellerPrice;
@@ -509,7 +509,7 @@ export default {
         return;
       }
 
-      this.isLoadingEditProductNonDimsum = true;
+      this.isLoadingEditProduct = true;
       try {
         const formData = new FormData();
         formData.append("name", this.name);
@@ -557,7 +557,7 @@ export default {
           });
         }
       }
-      this.isLoadingEditProductNonDimsum = false;
+      this.isLoadingEditProduct = false;
     },
   },
 };

@@ -48,6 +48,7 @@
       </div>
       <div class="mt-[24px] text-right">
         <Button
+          :loading="isLoading"
           btnClass="text-white bg-[#F6B205] text-xs md:text-sm font-semibold !px-[24px] py-[8px] rounded-[8px]"
           @click="OnClickSavePortfolio"
           >Simpan</Button

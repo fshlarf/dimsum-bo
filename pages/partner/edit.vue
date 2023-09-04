@@ -101,6 +101,7 @@
       </div>
       <div class="mt-[24px] text-right">
         <Button
+          :loading="isLoadingEditPartner"
           btnClass="text-white bg-[#F6B205] button-textfont-semibold !px-[24px] py-[8px] rounded-[8px]"
           @click="editPartner"
           >Simpan</Button
@@ -137,6 +138,7 @@ export default {
       rewardId: null,
       rewardName: "",
       isLoading: true,
+      isLoadingEditPartner: false,
       imageFile: null,
       dataPartner: {},
     };
@@ -224,6 +226,8 @@ export default {
         });
         return;
       }
+
+      this.isLoadingEditPartner = true;
       try {
         const formData = new FormData();
         formData.append("rewardId", this.rewardId);
@@ -268,6 +272,7 @@ export default {
           isSuccess: false,
         });
       }
+      this.isLoadingEditPartner = false;
     },
     getFile(file) {
       this.imageFile = file;

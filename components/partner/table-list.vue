@@ -22,7 +22,7 @@
           <td>
             <img
               class="w-[28px] h-[28px] rounded-full object-cover object-center"
-              :src="`http://localhost:16000/api/bucket/images/partners/${list.photoFilename}`"
+              :src="list.profileImage"
               alt="profil mitra"
             />
           </td>

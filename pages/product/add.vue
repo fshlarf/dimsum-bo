@@ -203,6 +203,7 @@
           />
           <div class="text-right mt-[20px]">
             <Button
+              :loading="isLoadingAddProduct"
               class="text-white bg-[#F6B205] px-[40px] py-[8px] button-text font-semibold rounded-[8px]"
               @click="addProductNonDimsum"
               >Simpan</Button
@@ -259,8 +260,7 @@ export default {
       mikaAgentPrice: null,
       mikaDescription: "",
       isLoading: true,
-      isLoadingAddProductNonDimsum: false,
-      isLoadingAddProductDimsum: false,
+      isLoadingAddProduct: false,
       unitOptions: [
         {
           name: "Pcs",
@@ -351,7 +351,7 @@ export default {
         return;
       }
 
-      this.isLoadingAddProductNonDimsum = true;
+      this.isLoadingAddProduct = true;
       try {
         const formData = new FormData();
         formData.append("categoryId", this.categoryId);
@@ -400,7 +400,7 @@ export default {
           });
         }
       }
-      this.isLoadingAddProductNonDimsum = false;
+      this.isLoadingAddProduct = false;
     },
     async addProductNonDimsum() {
       this.agentPrice = this.resellerPrice;
@@ -417,7 +417,7 @@ export default {
         return;
       }
 
-      this.isLoadingAddProductNonDimsum = true;
+      this.isLoadingAddProduct = true;
       try {
         const formData = new FormData();
         formData.append("categoryId", this.categoryId);
@@ -461,7 +461,7 @@ export default {
           });
         }
       }
-      this.isLoadingAddProductNonDimsum = false;
+      this.isLoadingAddProduct = false;
     },
   },
 };

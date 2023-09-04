@@ -46,6 +46,7 @@
       </div>
       <div class="mt-[24px] text-right">
         <Button
+          :loading="isLoadingEditUser"
           btnClass="text-white bg-[#F6B205] button-textfont-semibold !px-[24px] py-[8px] rounded-[8px]"
           @click="updateUser"
           >Simpan</Button
@@ -86,6 +87,7 @@ export default {
         },
       ],
       selectedActive: false,
+      isLoadingEditUser: false,
     };
   },
   mounted() {
@@ -115,6 +117,7 @@ export default {
         });
         return;
       }
+      this.isLoadingEditUser = true;
       try {
         await this.$axios
           .patch(`/users/${this.userId}`, {
@@ -145,6 +148,7 @@ export default {
           isSuccess: false,
         });
       }
+      this.isLoadingEditUser = false;
     },
   },
 };

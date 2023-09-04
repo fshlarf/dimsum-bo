@@ -52,6 +52,7 @@
       </div>
       <div class="text-right mt-[50px]">
         <Button
+          :loading="isLoadingSaveAnnouncement"
           @click="onSaveAnnouncement"
           class="bg-[#F6B205] text-white rounded-[8px] !px-[24px] py-[8px]"
           >Simpan</Button
