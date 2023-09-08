@@ -67,7 +67,7 @@
         <div v-if="!isLoading" class="mt-[45px]">
           <div
             v-if="products.list.length > 0"
-            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-[16px] gap-y-[20px]"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-x-[16px] gap-y-[20px]"
           >
             <CardProduct
               v-for="(product, id) in products.list"
@@ -123,7 +123,7 @@ export default {
     return {
       filterProduct: {
         page: 1,
-        limit: 10,
+        limit: 8,
         search: "",
         categoryId: null,
       },
@@ -189,19 +189,19 @@ export default {
         });
         if (getProducts.data) {
           const { data, pagination } = getProducts.data;
-          let list = [];
-          data.map((product) => {
-            product.variants.map((variant) => {
-              list.push({
-                ...product,
-                variant: variant,
-              });
-            });
-          });
-          console.log(data);
-          console.log(list);
+          // let list = [];
+          // data.map((product) => {
+          //   product.variants.map((variant) => {
+          //     list.push({
+          //       ...product,
+          //       variant: variant,
+          //     });
+          //   });
+          // });
+          // console.log(data);
+          // console.log(list);
           this.products = {
-            list: list,
+            list: data,
             pagination,
           };
         }
