@@ -23,7 +23,11 @@
         <div @click="item.isOpen = !item.isOpen" id="kebab-menu">
           <KebabMenu
             :is-show="item.isOpen"
-            @onSelect="onSelect"
+            @onSelect="
+              (data) => {
+                onSelect(data, item);
+              }
+            "
             :options="options"
           />
         </div>
@@ -60,8 +64,8 @@ export default {
     },
   },
   methods: {
-    onSelect(data) {
-      this.$emit("onSelectOption", data);
+    onSelect(data, reward) {
+      this.$emit("onSelectOption", data, reward);
     },
     removeItemAt(index) {
       this.todos.splice(index, 1);
