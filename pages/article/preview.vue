@@ -139,7 +139,8 @@ export default {
     },
     async getArticleImage(fileName) {
       if (fileName) {
-        const url = `bucket/images/articles/${fileName}`;
+        // const url = `bucket/images/articles/${fileName}`;
+        const url = fileName;
         await this.$axios
           .get(url, {
             responseType: "blob",

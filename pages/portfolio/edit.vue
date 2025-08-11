@@ -151,7 +151,8 @@ export default {
     },
     async getPortfolioIcon(fileName) {
       if (fileName) {
-        const url = `bucket/images/portfolio/${fileName}`;
+        // const url = `bucket/images/portfolio/${fileName}`;
+        const url = fileName;
         await this.$axios
           .get(url, {
             responseType: "blob",

@@ -192,7 +192,8 @@ export default {
     },
     async getImageFile(fileName) {
       if (fileName) {
-        const url = `bucket/images/partners/${fileName}`;
+        // const url = `bucket/images/partners/${fileName}`;
+        const url = fileName;
         await this.$axios
           .get(url, {
             responseType: "blob",

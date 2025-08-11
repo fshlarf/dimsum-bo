@@ -22,7 +22,7 @@
           <td>
             <img
               class="w-[28px] h-[28px] rounded-full object-cover object-center"
-              :src="list.profileImage"
+              :src="list.photoFilename"
               alt="profil mitra"
             />
           </td>

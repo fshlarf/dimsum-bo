@@ -118,7 +118,8 @@ export default {
     },
     async getAnnouncementPoster(fileName) {
       if (fileName) {
-        const url = `bucket/images/announcement/${fileName}`;
+        // const url = `bucket/images/announcement/${fileName}`;
+        const url = fileName;
         await this.$axios
           .get(url, {
             responseType: "blob",

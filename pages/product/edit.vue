@@ -387,7 +387,8 @@ export default {
     },
     async getProductImage(fileName) {
       if (fileName) {
-        const url = `bucket/images/products/${fileName}`;
+        // const url = `bucket/images/products/${fileName}`;
+        const url = fileName;
         await this.$axios
           .get(url, {
             responseType: "blob",
